@@ -1,0 +1,19 @@
+# OS / temp
+Thumbs.db
+Desktop.ini
+~$*
+*.tmp
+*.temp
+
+# OneDrive noise
+*.lnk
+
+# Editors
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs / caches
+*.log
+.cache/
