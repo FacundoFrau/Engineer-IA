@@ -4,6 +4,11 @@
 - Session ID:
 - Date:
 - Operator/Agent Role:
+- session_state:
+
+## Target Context
+- target_project (optional; required only if target audit esplicito):
+- target_workdir (optional; required only if target audit esplicito):
 
 ## Bootstrap Evidence
 - AGENTS/governance read:
@@ -14,22 +19,20 @@
 - State: initialized / partial / not initialized
 - Evidence:
 
+## Audit Scope
+- 
+
 ## Actions Executed
 1. 
 2. 
 
-## Decisions
-- Decision ID:
-- Context:
-- Decision:
-- Rationale:
+## Validation Evidence
+- 
 
-## Validation
-- Validator command:
-- Result:
-- Findings by severity (P0/P1/P2):
+## Findings
+- 
 
-## Residual Risks
+## Risks
 - 
 
 ## Next Action

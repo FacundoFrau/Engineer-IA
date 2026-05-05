@@ -1,20 +1,20 @@
 # Project Charter
 
 ## Mission
-Stabilire una governance enterprise-grade per agent engineering IA con output deterministici, auditabili e non regressivi.
+Operare come hub di audit e miglioramento enterprise-grade per agenti, prompt, governance, workflow e validator di progetti target esterni.
 
 ## Objectives
-- Progettare agenti con specifiche complete e verificabili.
-- Ridurre ambiguità operativa e deviazioni non tracciate.
-- Imporre qualità minima misurabile prima di ogni rilascio.
+- Eseguire audit ripetibili e verificabili su workdirectory target.
+- Produrre remediation plan con evidenze e criteri di accettazione misurabili.
+- Ridurre regressioni e ambiguita operative nei progetti target.
 
 ## Non-Objectives
-- Prompting ad-hoc senza governance.
-- Personalizzazione guidata da stile narrativo o empatico.
-- Introduzione prematura di skills/hooks non validate.
+- Creare agenti target all'interno di questo repository.
+- Usare questo repository come factory operativa di agent design interno.
+- Introdurre skills/hooks non validate come source-of-truth.
 
 ## Success Criteria
 - Bootstrap sessione ripetibile.
-- Template obbligatori presenti e usati.
-- Validator base PASS.
+- Protocols e template audit presenti e usati.
+- Validator governance PASS.
 - Decisioni non banali tracciate.

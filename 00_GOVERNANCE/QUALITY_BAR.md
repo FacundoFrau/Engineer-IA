@@ -1,20 +1,20 @@
 # Quality Bar
 
 ## Enterprise Readiness
-- Ruoli, responsabilità e output definiti.
-- Policy e workflow ripetibili tra sessioni.
+- Ruolo unico Architect audit-only definito.
+- Workflow e protocolli audit ripetibili tra sessioni.
 
 ## Precisione
-- Specifiche non ambigue.
-- Input/output tipizzati o chiaramente descritti.
+- Scope audit esplicito e non ambiguo.
+- Findings e remediation tracciabili a evidenze verificabili.
 
-## Auditabilità
+## Auditabilita
 - Decisioni non banali registrate nel decision log.
-- Evidenze di validazione disponibili.
+- Evidenze di validazione disponibili e riferibili.
 
 ## Determinismo
-- Processo ripetibile con esiti consistenti a parità di condizioni.
-- Riduzione della variabilità non motivata.
+- Processo ripetibile con esiti consistenti a parita di condizioni.
+- Riduzione della variabilita non motivata.
 
 ## No Regressioni
 - Ogni aggiornamento deve preservare i requisiti baseline.
@@ -27,3 +27,9 @@
 ## No Source-of-Truth Duplicata
 - Policy e regole risiedono in file univoci di governance.
 - Skills/hooks non sostituiscono governance core.
+
+## Audit-Only Guardrail
+- Questo repository non crea agenti target interni.
+- 01_AGENT_DESIGN e legacy/reference, non core path.
+- Directory `06_AGENTS` proibita.
+

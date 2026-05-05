@@ -58,3 +58,14 @@
 - Impact: migliora resilienza e audit remoto; enforcement avanzato resta in governance locale/processo
 - Risks: assenza temporanea di backup remoto finche URL non disponibile
 - Follow-up: quando disponibile URL, eseguire `git remote add origin <REMOTE_URL>` e `git push -u origin main`
+
+- Date: 2026-05-05
+- Owner: AI Engineer / Principal Agent Architect
+- Decision ID: DEC-2026-05-05-06
+- Context: riallineare il repository al modello operativo corretto
+- Options Considered: mantenere agent design factory / migrare ad audit hub single-architect
+- Decision: migrare a `single IA Engineer Architect audit-only hub` per audit e miglioramento di progetti target esterni
+- Rationale: allineare missione, workflow e validator al reale uso operativo, riducendo ambiguita e regressioni di governance
+- Impact: nuovo percorso core basato su protocolli/template audit; `01_AGENT_DESIGN` deprecato come legacy/reference
+- Risks: necessita disciplina nel mantenere coerenza tra governance core e validator
+- Follow-up: audit periodico del validator e dei protocolli review

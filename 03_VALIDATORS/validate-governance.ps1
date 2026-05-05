@@ -45,18 +45,14 @@ function Require-Markers {
     Pass "Marker check eseguito: $path"
 }
 
-function Require-NotVague {
-    param([string]$path,[string[]]$sections)
-    if (-not (Test-Path -Path $path -PathType Leaf)) { Add-Finding 'P1' "File mancante per vague check: $path"; return }
+function Forbid-Markers {
+    param([string]$path,[string[]]$markers,[string]$sev='P1')
+    if (-not (Test-Path -Path $path -PathType Leaf)) { Add-Finding $sev "File mancante per forbidden-marker check: $path"; return }
     $c = Get-Content -Path $path -Raw
-    foreach ($s in $sections) {
-        if ($c -notmatch [regex]::Escape($s)) { Add-Finding 'P1' "Sezione mancante in ${path}: ${s}" }
+    foreach ($m in $markers) {
+        if ($c -match [regex]::Escape($m)) { Add-Finding $sev "Marker proibito in ${path}: ${m}" }
     }
-    $bad = @('TODO','TBD','da definire')
-    foreach ($b in $bad) {
-        if ($c -match [regex]::Escape($b)) { Add-Finding 'P2' "Placeholder vago trovato in ${path}: ${b}" }
-    }
-    Pass "Vagueness check eseguito: $path"
+    Pass "Forbidden-marker check eseguito: $path"
 }
 
 # P0: git repo must exist
@@ -71,16 +67,26 @@ if (-not $gitOk) {
     Pass 'Repository Git rilevato.'
 }
 
-# Required structure
+# P0: forbidden directory
+if (Test-Path -Path '06_AGENTS' -PathType Container) {
+    Add-Finding 'P0' 'Directory proibita rilevata: 06_AGENTS'
+} else {
+    Pass 'Directory proibita 06_AGENTS assente.'
+}
+
 $requiredFiles = @(
     'AGENTS.md','README.md',
     '00_GOVERNANCE/PROJECT_CHARTER.md','00_GOVERNANCE/OPERATING_RULES.md','00_GOVERNANCE/QUALITY_BAR.md','00_GOVERNANCE/DECISION_LOG.md',
-    '01_AGENT_DESIGN/AGENT_SPEC_TEMPLATE.md','01_AGENT_DESIGN/TASK_MODEL_TEMPLATE.md','01_AGENT_DESIGN/EVALUATION_TEMPLATE.md','01_AGENT_DESIGN/HANDOFF_TEMPLATE.md',
-    '02_WORKFLOWS/SESSION_BOOTSTRAP.md','02_WORKFLOWS/AGENT_CREATION_WORKFLOW.md','02_WORKFLOWS/AGENT_REVIEW_WORKFLOW.md','02_WORKFLOWS/RELEASE_CHECKLIST.md',
-    '03_VALIDATORS/validate-governance.ps1','04_SESSION_LOGS/SESSION_LOG_TEMPLATE.md','05_SKILLS_CANDIDATES/README.md'
+    '02_WORKFLOWS/SESSION_BOOTSTRAP.md','03_VALIDATORS/validate-governance.ps1','04_SESSION_LOGS/SESSION_LOG_TEMPLATE.md',
+    'TARGET_PROJECT_AUDITS/README.md','TARGET_PROJECT_AUDITS/TARGET_AUDIT_RUN_TEMPLATE.md',
+    'REVIEW_PROTOCOLS/GOVERNANCE_AUDIT_PROTOCOL.md','REVIEW_PROTOCOLS/WORKFLOW_AUDIT_PROTOCOL.md','REVIEW_PROTOCOLS/VALIDATOR_AUDIT_PROTOCOL.md',
+    'OUTPUT_TEMPLATES/REMEDIATION_PLAN_TEMPLATE.md','TARGET_HANDOFFS/TARGET_HANDOFF_TEMPLATE.md',
+    '01_AGENT_DESIGN/README.md','05_SKILLS_CANDIDATES/README.md'
 )
 foreach ($f in $requiredFiles) { [void](Require-File $f) }
-[void](Require-Dir '04_SESSION_LOGS')
+
+$requiredDirs = @('04_SESSION_LOGS','TARGET_PROJECT_AUDITS','REVIEW_PROTOCOLS','OUTPUT_TEMPLATES','TARGET_HANDOFFS')
+foreach ($d in $requiredDirs) { [void](Require-Dir $d) }
 
 # Must have at least one real session log (not template)
 $logs = @()
@@ -93,18 +99,22 @@ if ($logs.Count -lt 1) {
     Pass 'Session log reale presente.'
 }
 
-# Cross-doc common markers
-Require-Markers 'AGENTS.md' @('AI Engineer / Principal Agent Architect','Divieto di compiacenza','Evidenza > opinione','Qualità enterprise > preferenze operatore')
-Require-Markers '00_GOVERNANCE/QUALITY_BAR.md' @('No Regressioni','No Output Generico','No Source-of-Truth Duplicata')
-Require-Markers '02_WORKFLOWS/SESSION_BOOTSTRAP.md' @('bootstrap e obbligatorio','Divieto di chiedere contesto se deducibile','Mandatory Session Log Update')
+Require-Markers 'AGENTS.md' @('single IA Engineer','audit-only','Non e consentita la creazione di agenti target interni','Directory `06_AGENTS` proibita')
+Require-Markers '00_GOVERNANCE/PROJECT_CHARTER.md' @('hub di audit','progetti target esterni','Non-Objectives')
+Require-Markers '00_GOVERNANCE/OPERATING_RULES.md' @('modalita audit-only','target_project','target_workdir','Nessuna creazione di agenti target interni')
+Require-Markers '00_GOVERNANCE/QUALITY_BAR.md' @('Audit-Only Guardrail','01_AGENT_DESIGN e legacy/reference, non core path','Directory `06_AGENTS` proibita')
+Require-Markers '02_WORKFLOWS/SESSION_BOOTSTRAP.md' @('target_project','target_workdir','obbligatori solo in sessioni con audit target esplicito','Mandatory Session Log Update')
+Require-Markers '01_AGENT_DESIGN/README.md' @('DEPRECATED / NON-CORE PATH','legacy/reference','Mapping verso nuovo modello audit hub')
+Require-Markers '04_SESSION_LOGS/SESSION_LOG_TEMPLATE.md' @('session_state','target_project (optional; required only if target audit esplicito)','target_workdir (optional; required only if target audit esplicito)','Audit Scope','Findings','Risks','Next Action')
 
-# Agent template minimum required fields and anti-vagueness
-Require-NotVague '01_AGENT_DESIGN/AGENT_SPEC_TEMPLATE.md' @(
-    '## Scope','## Non-scope','## Inputs','## Outputs','## Tools','Allowed:','Disallowed:','Tool policy',
-    '## Failure modes','## Validation protocol','Metrics and thresholds','Evidence required','Pass/Fail gates','## Acceptance criteria'
-)
+# Forbidden legacy-core framing in governance
+$forbiddenCore = @('Agent Creation Workflow','factory operativa di agent design interno','Spec agente completa e non vaga')
+Forbid-Markers 'AGENTS.md' $forbiddenCore
+Forbid-Markers '00_GOVERNANCE/PROJECT_CHARTER.md' @('Progettare agenti con specifiche complete e verificabili')
+Forbid-Markers '00_GOVERNANCE/OPERATING_RULES.md' @('Ogni agente deve rispettare')
+Forbid-Markers '00_GOVERNANCE/QUALITY_BAR.md' @('Spec agente')
 
-# Session log validity markers
+# Session log validity markers on current log
 $realLogPath = '04_SESSION_LOGS/session-2026-05-05.md'
 if (Test-Path $realLogPath) {
     Require-Markers $realLogPath @('Session ID: session-2026-05-05','## Validation','## Residual Risks','## Next Action') 'P1'
@@ -120,4 +130,3 @@ if ($hasBlocking) {
     Write-Host 'RESULT: PASS'
     exit 0
 }
-
