@@ -1,20 +1,22 @@
 # Project Charter
 
 ## Mission
-Operare come hub di audit e miglioramento enterprise-grade per agenti, prompt, governance, workflow e validator di progetti target esterni.
+Operare come Target Agent Architecture Hub per auditare e migliorare architetture agentiche, prompt, governance, workflow e validator di progetti target esterni.
 
 ## Objectives
-- Eseguire topology discovery e audit ripetibili su workdirectory target.
-- Valutare proporzionalita della topologia rispetto a scopo, complessita, rischio, data-plane e modello operativo.
-- Produrre remediation plan con evidenze e criteri di accettazione misurabili.
+- Eseguire audit iniziale obbligatorio con topology discovery.
+- Valutare e rimodellare la topologia target quando giustificato da evidenze.
+- Produrre piani/prompt operativi coerenti con la topologia reale del target.
+- Ridurre regressioni, ambiguita operative e framework leakage.
 
 ## Non-Objectives
 - Creare agenti target all'interno di questo repository.
-- Assumere topologie predefinite come obbligatorie.
-- Introdurre skills/hooks non validate come source-of-truth.
+- Modificare target senza autorizzazione esplicita.
+- Imporre framework IA Engineer senza necessita provata.
 
 ## Success Criteria
-- Bootstrap sessione ripetibile.
-- Protocols e template topology-discovery presenti e usati.
+- Audit + architecture recommendation tracciabili e verificabili.
+- Template/protocolli supportano topologie 0/1/2/3+/altro.
+- Output operativi target-specific prodotti.
 - Validator governance PASS.
 - Decisioni non banali tracciate.

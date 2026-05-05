@@ -4,6 +4,21 @@
 - Target project:
 - Audit reference:
 
+## Discovered Topology
+- Topology class: 0 agenti / 1 agente / Manager+Operativo / 3+ agenti / altro modello rilevato
+
+## Topology Options
+- Keep current:
+- Reduce:
+- Expand:
+- Refactor to alternative model:
+
+## Architecture Alternatives
+- Recommended architecture:
+- Alternative architecture 1:
+- Alternative architecture 2:
+- Trade-off summary:
+
 ## Target-Fit Rationale
 - Why this remediation is target-fit:
 - No-framework-leakage check:
@@ -19,7 +34,7 @@
 - Structural change proposed: yes/no
 - If yes, evidence in target files:
 - Scope/risk/complexity/data-plane/operational impact:
-- Acceptance criteria verificabile:
+- Acceptance criteria:
 
 ## Severity Gate
 - P0 used: yes/no
@@ -28,6 +43,12 @@
 ## External Research Trigger
 - Non-local standard/tool/vendor/best practice dependency: yes/no
 - If yes, sources and date:
+
+## Operational Prompt(s) for Target Agents
+- Manager prompt (if Manager exists):
+- Operativo prompt (if Operativo exists):
+- Single-agent prompt (if only one agent exists):
+- Governance/agentic introduction plan (if 0 agents and needed):
 
 ## Prioritized Actions
 1. P0:

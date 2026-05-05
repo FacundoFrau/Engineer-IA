@@ -1,20 +1,22 @@
 # Quality Bar
 
 ## Enterprise Readiness
-- Ruolo unico Architect audit-only definito.
-- Workflow e protocolli audit ripetibili tra sessioni.
+- Ruolo unico Architect definito come Target Agent Architecture Hub.
+- Audit iniziale obbligatorio e capability architetturale operativa disponibili.
 
 ## Precisione
 - Scope audit esplicito e non ambiguo.
+- Topologia reale documentata (0/1/2/3+/altro).
 - Findings e remediation tracciabili a evidenze verificabili.
 
 ## Auditabilita
 - Decisioni non banali registrate nel decision log.
 - Evidenze di validazione disponibili e riferibili.
 
-## Determinismo
-- Processo ripetibile con esiti consistenti a parita di condizioni.
-- Riduzione della variabilita non motivata.
+## Architecture Capability
+- Audit e fase iniziale, non limite.
+- Ammesso modellare/rimodellare topologie target con evidenze.
+- Output operativi (prompt/piani) coerenti con topologia reale.
 
 ## Target-Fit Remediation
 - Remediation deve essere target-fit, non framework-fit.
@@ -27,6 +29,10 @@
 ## No Framework Leakage
 - Vietato imporre governance IA Engineer al target senza necessita provata da evidenze.
 - No-framework-leakage check obbligatorio.
+
+## Authorization Guardrail
+- Vietata modifica target senza autorizzazione esplicita.
+- Vietata creazione agenti target nel repository IA Engineer.
 
 ## P0 Gate
 - P0 ammesso solo con rischio bloccante dimostrato.
@@ -45,8 +51,3 @@
 ## No Source-of-Truth Duplicata
 - Policy e regole risiedono in file univoci di governance.
 - Skills/hooks non sostituiscono governance core.
-
-## Audit-Only Guardrail
-- Questo repository non crea agenti target interni.
-- 01_AGENT_DESIGN e legacy/reference, non core path.
-- Directory `06_AGENTS` proibita.

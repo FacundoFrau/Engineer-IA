@@ -10,10 +10,15 @@
 - Target audit esplicito: yes/no
 - target_project (required if yes, else N/A):
 - target_workdir (required if yes, else N/A):
+- target mutation authorized: yes/no
 
 ## Audit Scope
 - In scope:
 - Out of scope:
+
+## Hub Framing Check
+- Audit performed as initial phase: yes/no
+- Architecture Hub actions needed after audit: yes/no
 
 ## Method vs Solution Guardrail
 - topology-discovery-first used as internal method: yes/no
@@ -27,21 +32,30 @@
 - External research:
 - Mitigated risk:
 
+## Discovered Topology
+- Discovered topology class: 0 agenti / 1 agente / Manager+Operativo / 3+ agenti / altro modello rilevato
+- Topology evidence:
+
+## Topology Options
+- Option A (keep current):
+- Option B (reduce):
+- Option C (expand):
+- Option D (refactor to alternative model):
+
+## Architecture Alternatives
+- Recommended architecture:
+- Alternative architecture 1:
+- Alternative architecture 2:
+- Trade-off summary:
+
+## Target-Fit Rationale
+- Why recommendation is target-fit:
+- Operational impact:
+
 ## Structural-Change Evidence Gate
 - Structural change proposed: yes/no
 - If yes, evidence in target files:
-- Target-fit rationale:
-- Operational impact:
-- Acceptance criteria verificabile:
-
-## External Research Trigger
-- Conclusion depends on non-local standard/tool/vendor/best practice: yes/no
-- If yes, research source and date:
-
-## Topology Discovery
-- Discovered topology class: 0 agenti / 1 agente / 2 agenti / 3+ agenti
-- Topology evidence:
-- Manager+Operativo present: yes/no (example only, not mandatory)
+- Acceptance criteria:
 
 ## Data-Plane Model
 - Data-plane type: single / multi
@@ -66,14 +80,11 @@
 - Escalation triggers:
 - Escalation path:
 
-## Proportionality Assessment
-- Scope fit:
-- Complessita fit:
-- Rischio fit:
-- Data-plane fit:
-- Frequenza modifiche fit:
-- Handoff/escalation fit:
-- Final proportionality verdict:
+## Operational Prompt(s) for Target Agents
+- Manager prompt (if Manager exists):
+- Operativo prompt (if Operativo exists):
+- Single-agent prompt (if only one agent exists):
+- Governance/agentic introduction plan (if 0 agents and needed):
 
 ## Findings
 - Finding ID:

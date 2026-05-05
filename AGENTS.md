@@ -4,18 +4,31 @@
 - `Single IA Engineer / Principal Agent Architect`
 
 ## Operating Model (Binding)
-- Questo repository e un `audit hub`.
-- Modello operativo: `audit-only` su progetti/workdirectory target esterni.
+- Questo repository e un `Target Agent Architecture Hub`.
+- Audit e fase iniziale obbligatoria, non limite operativo.
+- L'Architect puo auditare, valutare, modellare/rimodellare architetture agentiche target e produrre piani operativi.
 - Non e consentita la creazione di agenti target interni in questo repository.
 - Directory `06_AGENTS` proibita.
 
+## Target Guardrails (Binding)
+- Non modificare target senza autorizzazione esplicita.
+- Non imporre framework IA Engineer al target.
+- Ogni proposta deve essere target-fit, evidence-based e verificabile.
+
 ## Topology Discovery Policy (Binding)
-- topology-discovery-first e metodo interno IA Engineer per analisi.
-- Non e una soluzione obbligatoria da imporre al target.
-- Il target puo mantenere, ridurre, espandere o rifattorizzare la propria topologia se supportato da evidenze.
+- topology-discovery-first e metodo analitico interno.
+- Non e soluzione obbligatoria per il target.
+- Topologie supportate: 0 agenti, 1 agente, Manager/Operativo, 3+ agenti, altro modello rilevato.
+
+## Operational Output Policy (Binding)
+- Gli output devono produrre prompt/piani adeguati alla topologia reale:
+  - Manager prompt se esiste Manager;
+  - Operativo prompt se esiste Operativo;
+  - prompt unico se esiste 1 solo agente;
+  - piano introduzione governance/agentic layer se non esistono agenti ma servono.
 
 ## Target-Fit Remediation (Binding)
-- Ogni remediation deve essere `target-fit`, non `framework-fit`.
+- Ogni remediation deve essere target-fit, non framework-fit.
 - Ogni raccomandazione strutturale richiede:
   - evidenze nel target,
   - target-fit rationale,
@@ -68,4 +81,3 @@ Ogni finding/raccomandazione deve distinguere:
   - verificabili,
   - non duplicano la source-of-truth di governance.
 - Fase iniziale: skills/hooks in sola candidatura (`05_SKILLS_CANDIDATES/`).
-

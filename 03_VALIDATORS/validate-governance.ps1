@@ -99,115 +99,123 @@ if ($logs.Count -lt 1) {
     Pass 'Session log reale presente.'
 }
 
-# Enforced markers: target-fit + no-leakage + evidence taxonomy + gates
+# Architecture Hub framing (not audit-only only)
 Require-Markers 'AGENTS.md' @(
-    'topology-discovery-first e metodo interno IA Engineer',
-    'Non e una soluzione obbligatoria da imporre al target',
-    'Target-Fit Remediation (Binding)',
-    'No Framework Leakage (Binding)',
-    'Evidence Taxonomy (Binding)',
-    'External Research Trigger (Binding)',
-    'P0 consentito solo con rischio bloccante dimostrato'
+    'Target Agent Architecture Hub',
+    'Audit e fase iniziale obbligatoria, non limite operativo',
+    'topology-discovery-first e metodo analitico interno',
+    'Non e soluzione obbligatoria per il target',
+    'Topologie supportate: 0 agenti, 1 agente, Manager/Operativo, 3+ agenti, altro modello rilevato',
+    'Non modificare target senza autorizzazione esplicita',
+    'Non imporre framework IA Engineer al target'
+)
+
+Require-Markers '00_GOVERNANCE/PROJECT_CHARTER.md' @(
+    'Target Agent Architecture Hub',
+    'Audit iniziale obbligatorio',
+    'Valutare e rimodellare la topologia target',
+    'Produrre piani/prompt operativi coerenti con la topologia reale del target'
 )
 
 Require-Markers '00_GOVERNANCE/OPERATING_RULES.md' @(
-    'Remediation target-fit obbligatoria',
-    'No framework leakage check obbligatorio',
-    'Structural-change evidence gate obbligatorio',
-    'P0 solo con rischio bloccante dimostrato',
-    'Evidence, Inference, Assumption, External research, Mitigated risk',
-    'External research trigger condizionale'
+    'Audit iniziale obbligatorio; non e limite operativo',
+    'topology-discovery-first e metodo analitico interno, non soluzione target obbligatoria',
+    'Nessuna modifica al target senza autorizzazione esplicita',
+    'Manager prompt richiesto se esiste Manager',
+    'Operativo prompt richiesto se esiste Operativo',
+    'Prompt unico richiesto se esiste 1 solo agente',
+    'Se 0 agenti e servono capability agentiche: piano introduzione governance/agentic layer'
 )
 
 Require-Markers '00_GOVERNANCE/QUALITY_BAR.md' @(
-    'Target-Fit Remediation',
-    'No Framework Leakage',
-    'Evidence Taxonomy',
-    'P0 Gate',
-    'External Research Trigger'
+    'Target Agent Architecture Hub',
+    'Audit e fase iniziale, non limite',
+    'Ammesso modellare/rimodellare topologie target con evidenze',
+    'Vietata modifica target senza autorizzazione esplicita',
+    'Vietata creazione agenti target nel repository IA Engineer'
 )
 
+# template support for topology and operational outputs
 Require-Markers 'TARGET_PROJECT_AUDITS/TARGET_AUDIT_RUN_TEMPLATE.md' @(
-    'No-framework-leakage check',
-    'Evidence Taxonomy',
-    'Structural-Change Evidence Gate',
-    'Target-fit rationale',
-    'Acceptance criteria verificabile',
-    'P0 blocking risk demonstrated',
-    'External Research Trigger'
-)
-
-Require-Markers 'OUTPUT_TEMPLATES/REMEDIATION_PLAN_TEMPLATE.md' @(
+    'Discovered topology class: 0 agenti / 1 agente / Manager+Operativo / 3+ agenti / altro modello rilevato',
+    'Topology Options',
+    'Architecture Alternatives',
     'Target-Fit Rationale',
     'No-framework-leakage check',
     'Evidence Taxonomy',
     'Structural-Change Evidence Gate',
-    'Acceptance criteria verificabile',
-    'P0 used',
-    'blocking risk demonstrated',
-    'External Research Trigger'
+    'Operational Prompt(s) for Target Agents',
+    'Manager prompt (if Manager exists):',
+    'Operativo prompt (if Operativo exists):',
+    'Single-agent prompt (if only one agent exists):',
+    'Governance/agentic introduction plan (if 0 agents and needed):'
+)
+
+Require-Markers 'OUTPUT_TEMPLATES/REMEDIATION_PLAN_TEMPLATE.md' @(
+    'Topology class: 0 agenti / 1 agente / Manager+Operativo / 3+ agenti / altro modello rilevato',
+    'Topology Options',
+    'Architecture Alternatives',
+    'Target-Fit Rationale',
+    'No-framework-leakage check',
+    'Evidence Taxonomy',
+    'Structural-Change Evidence Gate',
+    'Operational Prompt(s) for Target Agents'
 )
 
 Require-Markers 'TARGET_HANDOFFS/TARGET_HANDOFF_TEMPLATE.md' @(
+    'Topology class: 0 agenti / 1 agente / Manager+Operativo / 3+ agenti / altro modello rilevato',
+    'Topology Options',
+    'Architecture Alternatives',
     'Target-Fit and Leakage Guardrail',
-    'No-framework-leakage check',
     'Evidence Taxonomy',
     'Structural-Change Evidence Gate',
-    'Acceptance criteria verificabile',
-    'P0 present',
-    'blocking risk demonstrated',
-    'External Research Trigger'
+    'Operational Prompt(s) for Target Agents'
 )
 
 Require-Markers 'REVIEW_PROTOCOLS/GOVERNANCE_AUDIT_PROTOCOL.md' @(
-    'target-fit remediation',
-    'no-framework-leakage check',
-    'evidence taxonomy',
-    'structural-change evidence gate',
-    'P0 usato solo con blocking risk dimostrato',
-    'external-research trigger condizionale'
+    'Target Agent Architecture Hub framing presente',
+    'Distinzione metodo vs soluzione presente',
+    'Guardrail autorizzativi presenti',
+    'Topologie supportate: 0 agenti, 1 agente, Manager+Operativo, 3+ agenti, altro modello rilevato',
+    'Topology options + architecture alternatives presenti',
+    'Output operativi per agenti target presenti'
 )
 
 Require-Markers 'REVIEW_PROTOCOLS/WORKFLOW_AUDIT_PROTOCOL.md' @(
-    'no-framework-leakage check',
-    'evidence taxonomy',
-    'structural-change evidence gate',
-    'P0 solo con blocking risk dimostrato',
-    'external-research trigger condizionale',
-    'acceptance criteria verificabile'
+    'Audit usato come fase iniziale, non limite operativo',
+    'Discovery topologia reale e supporto 0/1/2/3+/altro',
+    'Topology options e architecture alternatives documentate',
+    'Output operativi adattati alla topologia reale'
 )
 
 Require-Markers 'REVIEW_PROTOCOLS/VALIDATOR_AUDIT_PROTOCOL.md' @(
-    'FAIL se manca target-fit remediation',
-    'FAIL se manca no framework leakage',
-    'FAIL se manca evidence taxonomy',
-    'FAIL se manca structural-change evidence gate',
-    'FAIL se manca regola P0 with blocking risk demonstrated',
-    'FAIL se manca external-research trigger condizionale',
-    'P0/P1 bloccanti, P2 warn salvo strict'
+    'FAIL se il repository e descritto solo come audit-only',
+    'FAIL se manca framing Target Agent Architecture Hub',
+    'FAIL se manca distinzione metodo vs soluzione',
+    'FAIL se mancano guardrail autorizzativi',
+    'FAIL se i template non supportano topologie 0/1/2/3+/altro',
+    'FAIL se mancano output operativi per agenti target'
 )
 
 Require-Markers '04_SESSION_LOGS/SESSION_LOG_TEMPLATE.md' @(
-    'Target-fit rationale',
-    'No-framework-leakage check',
-    'Evidence Taxonomy',
-    'Structural-Change Evidence Gate',
-    'Acceptance criteria verificabile',
-    'P0 present',
-    'blocking risk demonstrated',
-    'External Research Trigger'
+    'Hub Framing',
+    'Method vs Solution Guardrail',
+    'topology_class: 0 agenti / 1 agente / Manager+Operativo / 3+ agenti / altro modello rilevato',
+    'Topology Options',
+    'Architecture Alternatives',
+    'Operational Prompt(s)'
 )
 
-# forbid converting internal method into mandatory target solution
-Forbid-Markers 'AGENTS.md' @('topology-discovery-first = soluzione obbligatoria target','topologia obbligatoria target')
+# fail if repo described ONLY as audit-only
+Forbid-Markers 'AGENTS.md' @('Modello operativo: audit-only')
 
-# current session log must include update markers
+# current session log update markers
 Require-Markers '04_SESSION_LOGS/session-2026-05-05.md' @(
-    'Enforced Governance Hardening Update - 2026-05-05',
-    'no_framework_leakage_check: pass',
-    'evidence_taxonomy: inserita come obbligo trasversale',
-    'severity_gate: P0 solo con blocking risk dimostrato',
-    'external_research_trigger: condizionale'
+    'Target Agent Architecture Hub Realignment Update - 2026-05-05',
+    'audit_as_initial_phase: yes',
+    'architecture_hub_actions_required: yes',
+    'topology_support: 0/1/Manager+Operativo/3+/altro',
+    'operational_prompts_policy: manager/operativo/single/0-agent plan obbligatori secondo topologia reale'
 )
 
 Write-Host "SUMMARY P0=$p0 P1=$p1 P2=$p2 Strict=$Strict"

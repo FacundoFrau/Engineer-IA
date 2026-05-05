@@ -91,3 +91,14 @@
 - Impact: governance/template/protocolli/validator allineati a evidenza > opinione
 - Risks: incremento overhead documentale
 - Follow-up: verificare applicazione su prossimi audit reali target
+
+- Date: 2026-05-05
+- Owner: AI Engineer / Principal Agent Architect
+- Decision ID: DEC-2026-05-05-09
+- Context: correggere framing audit-only e riallineare mandato operativo IA Engineer
+- Options Considered: mantenere audit-only / adottare Target Agent Architecture Hub
+- Decision: adottare modello `Target Agent Architecture Hub` con audit iniziale obbligatorio e capability architetturale completa
+- Rationale: evitare limitazione impropria del ruolo e supportare remediation/operativita target-fit end-to-end
+- Impact: governance/template/protocolli estesi a topology options, architecture alternatives e output operativi per topologia reale
+- Risks: aumento complessita documentale
+- Follow-up: validare il modello nel prossimo audit target reale
