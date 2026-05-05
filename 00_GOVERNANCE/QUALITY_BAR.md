@@ -18,10 +18,26 @@
 - Ammesso modellare/rimodellare topologie target con evidenze.
 - Output operativi (prompt/piani) coerenti con topologia reale.
 
+## Owner Routing Enforcement
+- Owner Routing Gate obbligatorio per ogni finding.
+- Owner enum obbligatorio: Manager / Operativo / Misto / Nessun agente.
+- Manager-owned richiede Manager primary prompt.
+- Operativo prompt ammesso solo con runtime/data-plane need.
+- Misto richiede Manager->Operativo sequence.
+- Nessun agente: proposta struttura solo evidence-based.
+
+## Required Finding Fields
+- owner
+- ownership rationale
+- modification scope
+- primary prompt
+- secondary prompt (if applicable)
+- escalation trigger/path
+
 ## Target-Fit Remediation
 - Remediation deve essere target-fit, non framework-fit.
 - Ogni raccomandazione strutturale richiede target-fit rationale e structural-change evidence gate.
-- Ogni raccomandazione deve includere acceptance criteria verificabile.
+- Ogni raccomandazione deve includere acceptance criteria.
 
 ## Evidence Taxonomy
 - Obbligatorio distinguere: Evidence, Inference, Assumption, External research, Mitigated risk.

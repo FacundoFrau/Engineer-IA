@@ -5,6 +5,17 @@
 - target_workdir:
 - target mutation authorized: yes/no
 
+## Owner Routing Gate
+- owner: Manager / Operativo / Misto / Nessun agente
+- ownership rationale:
+- modification scope:
+- primary prompt:
+- secondary prompt (if applicable):
+- escalation trigger/path:
+- Manager-owned => Manager primary prompt check: pass/fail
+- Operativo prompt only with runtime/data-plane need check: pass/fail
+- Misto Manager->Operativo sequence check: pass/fail
+
 ## Discovered Topology
 - Topology class: 0 agenti / 1 agente / Manager+Operativo / 3+ agenti / altro modello rilevato
 
@@ -35,14 +46,6 @@
 - If yes, evidence in target files:
 - Acceptance criteria:
 
-## Severity Gate
-- P0 present: yes/no
-- If yes, blocking risk demonstrated:
-
-## External Research Trigger
-- Non-local standard/tool/vendor/best practice dependency: yes/no
-- If yes, sources and date:
-
 ## Operational Prompt(s) for Target Agents
 - Manager prompt (if Manager exists):
 - Operativo prompt (if Operativo exists):
@@ -52,23 +55,6 @@
 ## Audit Summary
 - Scope:
 - Result:
-
-## Authority Boundaries
-- Decision authority:
-- Execution authority:
-- Approval authority:
-- Escalation authority:
-
-## Handoff / Escalation
-- Handoff trigger:
-- Escalation trigger:
-- Escalation path:
-
-## Delivered Evidence
-- 
-
-## Open Risks
-- 
 
 ## Required Actions
 1. 

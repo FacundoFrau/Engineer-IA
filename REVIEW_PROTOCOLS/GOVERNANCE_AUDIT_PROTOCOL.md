@@ -1,19 +1,19 @@
 # Governance Audit Protocol
 
 ## Objective
-Verificare governance target con audit iniziale obbligatorio e capability di architecture modeling/remodeling target-fit.
+Verificare governance target con Owner Routing enforcement e prompt ownership-correct.
 
 ## Mandatory Checks
-1. Target Agent Architecture Hub framing presente (non solo audit-only).
-2. Distinzione metodo vs soluzione presente (`topology-discovery-first` metodo interno).
-3. Guardrail autorizzativi presenti (no target mutation without explicit authorization; no local target-agent creation).
-4. Topologie supportate: 0 agenti, 1 agente, Manager+Operativo, 3+ agenti, altro modello rilevato.
-5. Topology options + architecture alternatives presenti.
-6. Target-fit rationale + no-framework-leakage check presenti.
-7. Evidence taxonomy completa.
-8. Structural-change evidence gate + acceptance criteria presenti.
-9. Output operativi per agenti target presenti.
+1. Owner Routing Gate presente.
+2. Owner enum presente: Manager/Operativo/Misto/Nessun agente.
+3. ownership rationale + modification scope presenti.
+4. primary/secondary prompt fields presenti.
+5. escalation trigger/path presente.
+6. Regola Manager-owned => Manager primary prompt applicata.
+7. Operativo prompt solo con runtime/data-plane need.
+8. Misto con Manager->Operativo sequence.
+9. Nessun agente solo evidence-based.
 
 ## Output
 - Findings con severita P0/P1/P2.
-- Remediation plan e prompt operativi target-fit.
+- Remediation plan e prompt operativi ownership-correct.

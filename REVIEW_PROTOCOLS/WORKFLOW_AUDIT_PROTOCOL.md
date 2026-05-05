@@ -1,19 +1,17 @@
 # Workflow Audit Protocol
 
 ## Objective
-Verificare workflow target con audit iniziale e fase architetturale successiva quando necessaria.
+Verificare workflow target con routing ownership-correct prima della generazione prompt.
 
 ## Mandatory Checks
-1. Audit usato come fase iniziale, non limite operativo.
-2. Discovery topologia reale e supporto 0/1/2/3+/altro.
-3. Topology options e architecture alternatives documentate.
-4. No-framework-leakage check e target-fit rationale presenti.
-5. Structural-change evidence gate prima di recommendation strutturale.
-6. Evidence taxonomy completa.
-7. Output operativi adattati alla topologia reale (manager/operativo/single/0-agent plan).
-8. Acceptance criteria presenti per ogni remediation.
+1. Owner Routing Gate eseguito prima dei prompt.
+2. Manager-owned produce Manager primary prompt.
+3. Operativo-owned produce Operativo primary prompt solo con runtime/data-plane scope.
+4. Misto include sequenza Manager->Operativo.
+5. Finding senza owner/rationale/scope e bloccante.
+6. escalation trigger/path presente.
 
 ## Output
 - Findings con evidenze.
 - Azioni correttive ordinate per priorita.
-- Prompt/piani operativi per topologia target.
+- Prompt/piani operativi ownership-correct.

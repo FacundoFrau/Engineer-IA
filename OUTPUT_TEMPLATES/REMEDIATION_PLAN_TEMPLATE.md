@@ -4,6 +4,17 @@
 - Target project:
 - Audit reference:
 
+## Owner Routing Gate
+- owner: Manager / Operativo / Misto / Nessun agente
+- ownership rationale:
+- modification scope:
+- primary prompt:
+- secondary prompt (if applicable):
+- escalation trigger/path:
+- Manager-owned => Manager primary prompt check: pass/fail
+- Operativo prompt only with runtime/data-plane need check: pass/fail
+- Misto Manager->Operativo sequence check: pass/fail
+
 ## Discovered Topology
 - Topology class: 0 agenti / 1 agente / Manager+Operativo / 3+ agenti / altro modello rilevato
 

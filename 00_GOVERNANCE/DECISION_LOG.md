@@ -102,3 +102,14 @@
 - Impact: governance/template/protocolli estesi a topology options, architecture alternatives e output operativi per topologia reale
 - Risks: aumento complessita documentale
 - Follow-up: validare il modello nel prossimo audit target reale
+
+- Date: 2026-05-05
+- Owner: AI Engineer / Principal Agent Architect
+- Decision ID: DEC-2026-05-05-10
+- Context: evitare prompt operativi indirizzati all owner errato
+- Options Considered: routing implicito / Owner Routing Gate obbligatorio
+- Decision: introdurre Owner Routing Enforcement con owner enum, rationale, scope, prompt routing e escalation obbligatori
+- Rationale: garantire ownership-correct remediation e prevenire default Operativo non giustificati
+- Impact: governance/template/protocolli/validator allineati a routing ownership-first
+- Risks: incremento overhead documentale
+- Follow-up: validare su audit target reale accuracy del routing

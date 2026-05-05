@@ -20,12 +20,24 @@
 - Nessuna creazione di agenti target interni; `06_AGENTS` vietata.
 - Nessuna modifica al target senza autorizzazione esplicita.
 
+## Owner Routing Rules
+- Owner Routing Gate obbligatorio prima della generazione prompt.
+- Owner enum: Manager / Operativo / Misto / Nessun agente.
+- Manager-owned => Manager primary prompt.
+- Operativo prompt solo con runtime/data-plane need esplicito.
+- Misto => Manager->Operativo sequence obbligatoria (Manager prima, Operativo dopo autorizzazione).
+- Nessun agente => proposta struttura solo evidence-based.
+- Vietato default Operativo primary prompt per sola presenza Operativo.
+
 ## Operational Output Rules
-- Gli output operativi devono adattarsi alla topologia rilevata.
-- Manager prompt richiesto se esiste Manager.
-- Operativo prompt richiesto se esiste Operativo.
-- Prompt unico richiesto se esiste 1 solo agente.
-- Se 0 agenti e servono capability agentiche: piano introduzione governance/agentic layer.
+- Ogni finding deve includere:
+  - owner,
+  - ownership rationale,
+  - modification scope,
+  - primary prompt,
+  - secondary prompt (if applicable),
+  - escalation trigger/path.
+- Gli output operativi devono adattarsi alla topologia e ownership rilevate.
 
 ## Evidence and Research Rules
 - Ogni finding/raccomandazione deve distinguere: Evidence, Inference, Assumption, External research, Mitigated risk.

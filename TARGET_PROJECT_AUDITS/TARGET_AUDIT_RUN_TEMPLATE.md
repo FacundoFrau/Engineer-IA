@@ -16,9 +16,16 @@
 - In scope:
 - Out of scope:
 
-## Hub Framing Check
-- Audit performed as initial phase: yes/no
-- Architecture Hub actions needed after audit: yes/no
+## Owner Routing Gate
+- owner: Manager / Operativo / Misto / Nessun agente
+- ownership rationale:
+- modification scope:
+- primary prompt:
+- secondary prompt (if applicable):
+- escalation trigger/path:
+- Manager-owned => Manager primary prompt check: pass/fail
+- Operativo prompt only with runtime/data-plane need check: pass/fail
+- Misto Manager->Operativo sequence check: pass/fail
 
 ## Method vs Solution Guardrail
 - topology-discovery-first used as internal method: yes/no
@@ -56,29 +63,6 @@
 - Structural change proposed: yes/no
 - If yes, evidence in target files:
 - Acceptance criteria:
-
-## Data-Plane Model
-- Data-plane type: single / multi
-- Data-plane ownership:
-- Data-plane boundaries:
-
-## Source-of-Truth Chain
-- Policy source:
-- Orchestration source:
-- Execution source:
-- Evidence source:
-- Chain integrity status:
-
-## Authority Boundaries
-- Decision authority:
-- Execution authority:
-- Approval authority:
-- Escalation authority:
-
-## Handoff / Escalation
-- Handoff triggers:
-- Escalation triggers:
-- Escalation path:
 
 ## Operational Prompt(s) for Target Agents
 - Manager prompt (if Manager exists):

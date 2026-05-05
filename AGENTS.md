@@ -20,12 +20,24 @@
 - Non e soluzione obbligatoria per il target.
 - Topologie supportate: 0 agenti, 1 agente, Manager/Operativo, 3+ agenti, altro modello rilevato.
 
+## Owner Routing Gate (Binding)
+- Ogni finding deve avere owner routing obbligatorio prima della generazione prompt.
+- Owner enum obbligatorio: `Manager` / `Operativo` / `Misto` / `Nessun agente`.
+- Manager-owned => Manager primary prompt.
+- Operativo prompt solo se il fix richiede runtime/data-plane changes.
+- Misto => Manager prima definisce piano/autorita, Operativo dopo autorizzazione.
+- Nessun agente => proposta struttura solo evidence-based.
+- Vietato Operativo primary prompt come default solo per esistenza Operativo.
+
 ## Operational Output Policy (Binding)
-- Gli output devono produrre prompt/piani adeguati alla topologia reale:
-  - Manager prompt se esiste Manager;
-  - Operativo prompt se esiste Operativo;
-  - prompt unico se esiste 1 solo agente;
-  - piano introduzione governance/agentic layer se non esistono agenti ma servono.
+- Gli output devono produrre prompt/piani adeguati a topologia e ownership reale.
+- Ogni finding deve includere:
+  - owner,
+  - ownership rationale,
+  - modification scope,
+  - primary prompt,
+  - secondary prompt (if applicable),
+  - escalation trigger/path.
 
 ## Target-Fit Remediation (Binding)
 - Ogni remediation deve essere target-fit, non framework-fit.

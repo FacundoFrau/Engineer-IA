@@ -55,19 +55,13 @@ function Forbid-Markers {
     Pass "Forbidden-marker check eseguito: $path"
 }
 
-# P0: git repo must exist
 $gitOk = $false
 try {
     $inside = git rev-parse --is-inside-work-tree 2>$null
     if ($inside -eq 'true') { $gitOk = $true }
 } catch { }
-if (-not $gitOk) {
-    Add-Finding 'P0' 'Repository Git assente.'
-} else {
-    Pass 'Repository Git rilevato.'
-}
+if (-not $gitOk) { Add-Finding 'P0' 'Repository Git assente.' } else { Pass 'Repository Git rilevato.' }
 
-# P0: forbidden directory
 if (Test-Path -Path '06_AGENTS' -PathType Container) {
     Add-Finding 'P0' 'Directory proibita rilevata: 06_AGENTS'
 } else {
@@ -77,7 +71,8 @@ if (Test-Path -Path '06_AGENTS' -PathType Container) {
 $requiredFiles = @(
     'AGENTS.md','README.md',
     '00_GOVERNANCE/PROJECT_CHARTER.md','00_GOVERNANCE/OPERATING_RULES.md','00_GOVERNANCE/QUALITY_BAR.md','00_GOVERNANCE/DECISION_LOG.md',
-    '02_WORKFLOWS/SESSION_BOOTSTRAP.md','03_VALIDATORS/validate-governance.ps1','04_SESSION_LOGS/SESSION_LOG_TEMPLATE.md','04_SESSION_LOGS/session-2026-05-05.md',
+    '03_VALIDATORS/validate-governance.ps1','03_VALIDATORS/test-validate-governance-negative.ps1',
+    '04_SESSION_LOGS/SESSION_LOG_TEMPLATE.md','04_SESSION_LOGS/session-2026-05-05.md',
     'TARGET_PROJECT_AUDITS/TARGET_AUDIT_RUN_TEMPLATE.md',
     'REVIEW_PROTOCOLS/GOVERNANCE_AUDIT_PROTOCOL.md','REVIEW_PROTOCOLS/WORKFLOW_AUDIT_PROTOCOL.md','REVIEW_PROTOCOLS/VALIDATOR_AUDIT_PROTOCOL.md',
     'OUTPUT_TEMPLATES/REMEDIATION_PLAN_TEMPLATE.md','TARGET_HANDOFFS/TARGET_HANDOFF_TEMPLATE.md',
@@ -88,135 +83,63 @@ foreach ($f in $requiredFiles) { [void](Require-File $f) }
 $requiredDirs = @('04_SESSION_LOGS','TARGET_PROJECT_AUDITS','REVIEW_PROTOCOLS','OUTPUT_TEMPLATES','TARGET_HANDOFFS')
 foreach ($d in $requiredDirs) { [void](Require-Dir $d) }
 
-# Must have at least one real session log (not template)
 $logs = @()
 if (Test-Path '04_SESSION_LOGS') {
     $logs = Get-ChildItem '04_SESSION_LOGS' -File | Where-Object { $_.Name -ne 'SESSION_LOG_TEMPLATE.md' -and $_.Extension -eq '.md' }
 }
-if ($logs.Count -lt 1) {
-    Add-Finding 'P1' 'Session log reale mancante in 04_SESSION_LOGS.'
-} else {
-    Pass 'Session log reale presente.'
-}
+if ($logs.Count -lt 1) { Add-Finding 'P1' 'Session log reale mancante in 04_SESSION_LOGS.' } else { Pass 'Session log reale presente.' }
 
-# Architecture Hub framing (not audit-only only)
 Require-Markers 'AGENTS.md' @(
-    'Target Agent Architecture Hub',
-    'Audit e fase iniziale obbligatoria, non limite operativo',
-    'topology-discovery-first e metodo analitico interno',
-    'Non e soluzione obbligatoria per il target',
-    'Topologie supportate: 0 agenti, 1 agente, Manager/Operativo, 3+ agenti, altro modello rilevato',
-    'Non modificare target senza autorizzazione esplicita',
-    'Non imporre framework IA Engineer al target'
-)
-
-Require-Markers '00_GOVERNANCE/PROJECT_CHARTER.md' @(
-    'Target Agent Architecture Hub',
-    'Audit iniziale obbligatorio',
-    'Valutare e rimodellare la topologia target',
-    'Produrre piani/prompt operativi coerenti con la topologia reale del target'
+    'Owner Routing Gate (Binding)',
+    'Owner enum obbligatorio: `Manager` / `Operativo` / `Misto` / `Nessun agente`',
+    'Manager-owned => Manager primary prompt',
+    'Operativo prompt solo se il fix richiede runtime/data-plane changes',
+    'Misto => Manager prima definisce piano/autorita, Operativo dopo autorizzazione',
+    'Vietato Operativo primary prompt come default solo per esistenza Operativo'
 )
 
 Require-Markers '00_GOVERNANCE/OPERATING_RULES.md' @(
-    'Audit iniziale obbligatorio; non e limite operativo',
-    'topology-discovery-first e metodo analitico interno, non soluzione target obbligatoria',
-    'Nessuna modifica al target senza autorizzazione esplicita',
-    'Manager prompt richiesto se esiste Manager',
-    'Operativo prompt richiesto se esiste Operativo',
-    'Prompt unico richiesto se esiste 1 solo agente',
-    'Se 0 agenti e servono capability agentiche: piano introduzione governance/agentic layer'
+    'Owner Routing Gate obbligatorio prima della generazione prompt',
+    'Owner enum: Manager / Operativo / Misto / Nessun agente',
+    'Manager-owned => Manager primary prompt',
+    'Operativo prompt solo con runtime/data-plane need esplicito',
+    'Misto => Manager->Operativo sequence obbligatoria',
+    'Vietato default Operativo primary prompt per sola presenza Operativo'
 )
 
 Require-Markers '00_GOVERNANCE/QUALITY_BAR.md' @(
-    'Target Agent Architecture Hub',
-    'Audit e fase iniziale, non limite',
-    'Ammesso modellare/rimodellare topologie target con evidenze',
-    'Vietata modifica target senza autorizzazione esplicita',
-    'Vietata creazione agenti target nel repository IA Engineer'
+    'Owner Routing Enforcement',
+    'Owner enum obbligatorio: Manager / Operativo / Misto / Nessun agente',
+    'Manager-owned richiede Manager primary prompt',
+    'Operativo prompt ammesso solo con runtime/data-plane need',
+    'Misto richiede Manager->Operativo sequence',
+    'Required Finding Fields'
 )
 
-# template support for topology and operational outputs
-Require-Markers 'TARGET_PROJECT_AUDITS/TARGET_AUDIT_RUN_TEMPLATE.md' @(
-    'Discovered topology class: 0 agenti / 1 agente / Manager+Operativo / 3+ agenti / altro modello rilevato',
-    'Topology Options',
-    'Architecture Alternatives',
-    'Target-Fit Rationale',
-    'No-framework-leakage check',
-    'Evidence Taxonomy',
-    'Structural-Change Evidence Gate',
-    'Operational Prompt(s) for Target Agents',
-    'Manager prompt (if Manager exists):',
-    'Operativo prompt (if Operativo exists):',
-    'Single-agent prompt (if only one agent exists):',
-    'Governance/agentic introduction plan (if 0 agents and needed):'
+$ownerMarkers = @(
+    'owner: Manager / Operativo / Misto / Nessun agente',
+    'ownership rationale:',
+    'modification scope:',
+    'primary prompt:',
+    'secondary prompt (if applicable):',
+    'escalation trigger/path:'
 )
+Require-Markers 'TARGET_PROJECT_AUDITS/TARGET_AUDIT_RUN_TEMPLATE.md' $ownerMarkers
+Require-Markers 'OUTPUT_TEMPLATES/REMEDIATION_PLAN_TEMPLATE.md' $ownerMarkers
+Require-Markers 'TARGET_HANDOFFS/TARGET_HANDOFF_TEMPLATE.md' $ownerMarkers
+Require-Markers '04_SESSION_LOGS/SESSION_LOG_TEMPLATE.md' $ownerMarkers
 
-Require-Markers 'OUTPUT_TEMPLATES/REMEDIATION_PLAN_TEMPLATE.md' @(
-    'Topology class: 0 agenti / 1 agente / Manager+Operativo / 3+ agenti / altro modello rilevato',
-    'Topology Options',
-    'Architecture Alternatives',
-    'Target-Fit Rationale',
-    'No-framework-leakage check',
-    'Evidence Taxonomy',
-    'Structural-Change Evidence Gate',
-    'Operational Prompt(s) for Target Agents'
-)
+Require-Markers 'TARGET_PROJECT_AUDITS/TARGET_AUDIT_RUN_TEMPLATE.md' @('Manager-owned => Manager primary prompt check: pass/fail','Operativo prompt only with runtime/data-plane need check: pass/fail','Misto Manager->Operativo sequence check: pass/fail')
+Require-Markers 'OUTPUT_TEMPLATES/REMEDIATION_PLAN_TEMPLATE.md' @('Manager-owned => Manager primary prompt check: pass/fail','Operativo prompt only with runtime/data-plane need check: pass/fail','Misto Manager->Operativo sequence check: pass/fail')
+Require-Markers 'TARGET_HANDOFFS/TARGET_HANDOFF_TEMPLATE.md' @('Manager-owned => Manager primary prompt check: pass/fail','Operativo prompt only with runtime/data-plane need check: pass/fail','Misto Manager->Operativo sequence check: pass/fail')
 
-Require-Markers 'TARGET_HANDOFFS/TARGET_HANDOFF_TEMPLATE.md' @(
-    'Topology class: 0 agenti / 1 agente / Manager+Operativo / 3+ agenti / altro modello rilevato',
-    'Topology Options',
-    'Architecture Alternatives',
-    'Target-Fit and Leakage Guardrail',
-    'Evidence Taxonomy',
-    'Structural-Change Evidence Gate',
-    'Operational Prompt(s) for Target Agents'
-)
+Require-Markers 'REVIEW_PROTOCOLS/GOVERNANCE_AUDIT_PROTOCOL.md' @('Owner Routing Gate presente','Owner enum presente','Manager-owned => Manager primary prompt applicata','Operativo prompt solo con runtime/data-plane need','Misto con Manager->Operativo sequence')
+Require-Markers 'REVIEW_PROTOCOLS/WORKFLOW_AUDIT_PROTOCOL.md' @('Owner Routing Gate eseguito prima dei prompt','Manager-owned produce Manager primary prompt','Operativo-owned produce Operativo primary prompt solo con runtime/data-plane scope','Misto include sequenza Manager->Operativo','Finding senza owner/rationale/scope e bloccante')
+Require-Markers 'REVIEW_PROTOCOLS/VALIDATOR_AUDIT_PROTOCOL.md' @('FAIL se manca Owner Routing section','FAIL se manca owner enum','FAIL se mancano ownership rationale/modification scope/prompt/escalation fields','FAIL se manca regola Manager-owned => Manager primary prompt','FAIL se manca regola Operativo prompt solo con runtime/data-plane need','FAIL se manca regola Misto Manager->Operativo sequence','FAIL se manca regola Nessun agente evidence-based')
 
-Require-Markers 'REVIEW_PROTOCOLS/GOVERNANCE_AUDIT_PROTOCOL.md' @(
-    'Target Agent Architecture Hub framing presente',
-    'Distinzione metodo vs soluzione presente',
-    'Guardrail autorizzativi presenti',
-    'Topologie supportate: 0 agenti, 1 agente, Manager+Operativo, 3+ agenti, altro modello rilevato',
-    'Topology options + architecture alternatives presenti',
-    'Output operativi per agenti target presenti'
-)
+Forbid-Markers 'AGENTS.md' @('Operativo primary prompt di default')
 
-Require-Markers 'REVIEW_PROTOCOLS/WORKFLOW_AUDIT_PROTOCOL.md' @(
-    'Audit usato come fase iniziale, non limite operativo',
-    'Discovery topologia reale e supporto 0/1/2/3+/altro',
-    'Topology options e architecture alternatives documentate',
-    'Output operativi adattati alla topologia reale'
-)
-
-Require-Markers 'REVIEW_PROTOCOLS/VALIDATOR_AUDIT_PROTOCOL.md' @(
-    'FAIL se il repository e descritto solo come audit-only',
-    'FAIL se manca framing Target Agent Architecture Hub',
-    'FAIL se manca distinzione metodo vs soluzione',
-    'FAIL se mancano guardrail autorizzativi',
-    'FAIL se i template non supportano topologie 0/1/2/3+/altro',
-    'FAIL se mancano output operativi per agenti target'
-)
-
-Require-Markers '04_SESSION_LOGS/SESSION_LOG_TEMPLATE.md' @(
-    'Hub Framing',
-    'Method vs Solution Guardrail',
-    'topology_class: 0 agenti / 1 agente / Manager+Operativo / 3+ agenti / altro modello rilevato',
-    'Topology Options',
-    'Architecture Alternatives',
-    'Operational Prompt(s)'
-)
-
-# fail if repo described ONLY as audit-only
-Forbid-Markers 'AGENTS.md' @('Modello operativo: audit-only')
-
-# current session log update markers
-Require-Markers '04_SESSION_LOGS/session-2026-05-05.md' @(
-    'Target Agent Architecture Hub Realignment Update - 2026-05-05',
-    'audit_as_initial_phase: yes',
-    'architecture_hub_actions_required: yes',
-    'topology_support: 0/1/Manager+Operativo/3+/altro',
-    'operational_prompts_policy: manager/operativo/single/0-agent plan obbligatori secondo topologia reale'
-)
+Require-Markers '04_SESSION_LOGS/session-2026-05-05.md' @('Owner Routing Enforcement Update - 2026-05-05','owner_routing_gate: introduced and mandatory','manager_primary_rule: enforced','operativo_scope_rule: runtime/data-plane required','misto_sequence_rule: Manager->Operativo enforced')
 
 Write-Host "SUMMARY P0=$p0 P1=$p1 P2=$p2 Strict=$Strict"
 if ($hasBlocking) {
