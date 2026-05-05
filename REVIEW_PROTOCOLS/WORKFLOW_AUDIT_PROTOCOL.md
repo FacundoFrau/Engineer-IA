@@ -1,17 +1,9 @@
 # Workflow Audit Protocol
 
-## Objective
-Verificare workflow target con routing ownership-correct e continuita operativa prima della remediation impattante.
-
 ## Mandatory Checks
-1. Owner Routing Gate eseguito prima dei prompt.
-2. Operator Intent Gate eseguito prima di remediation distruttive/impattanti.
-3. risk_if_unchanged vs risk_if_removed valutati.
-4. preserve_operability e safe_alternatives presenti.
-5. fallback_rollback presente per remediation impattante.
-6. P0 solo con blocking risk confermato.
-
-## Output
-- Findings con evidenze.
-- Azioni correttive ordinate per priorita.
-- Prompt/piani operativi ownership-correct.
+1. Claim audit completo coerente con coverage matrix.
+2. Sezioni non coperte marcate non auditato + motivo.
+3. Security findings classificati con regola P1/P0.
+4. Operator intent gate applicato prima di remediation impattante.
+5. Prompt operativo include 8 blocchi obbligatori.
+6. External research applicata quando dipendenza non locale.

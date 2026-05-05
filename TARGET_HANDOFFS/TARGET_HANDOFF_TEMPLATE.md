@@ -1,19 +1,17 @@
 # Target Handoff Template
 
-## Target Context
-- target_project:
-- target_workdir:
-- target mutation authorized: yes/no
+## Language Gate
+- output_language: italiano
 
-## Owner Routing Gate
-- owner: Manager / Operativo / Misto / Nessun agente
-- ownership rationale:
-- modification scope:
-- primary prompt:
-- secondary prompt (if applicable):
-- escalation trigger/path:
+## Enterprise Coverage Disclosure
+- non_auditato_sections:
+- non_auditato_reason:
 
-## Operator Intent & Operational Continuity Gate
+## Security Severity
+- confirmed_secret_exposed_valid_operational: yes/no
+- severity_rule_applied:
+
+## Operator Intent & Continuity
 - operator_intent_required: yes/no
 - operator_intent_question:
 - risk_if_unchanged:
@@ -23,46 +21,12 @@
 - recommended_remediation:
 - fallback_rollback:
 
-## Discovered Topology
-- Topology class: 0 agenti / 1 agente / Manager+Operativo / 3+ agenti / altro modello rilevato
-
-## Topology Options
-- Keep current:
-- Reduce:
-- Expand:
-- Refactor:
-
-## Architecture Alternatives
-- Recommended architecture:
-- Alternative 1:
-- Alternative 2:
-
-## Target-Fit and Leakage Guardrail
-- Target-fit rationale:
-- No-framework-leakage check:
-
-## Evidence Taxonomy
-- Evidence:
-- Inference:
-- Assumption:
-- External research:
-- Mitigated risk:
-
-## Structural-Change Evidence Gate
-- Structural change proposed: yes/no
-- If yes, evidence in target files:
-- Acceptance criteria:
-
-## Operational Prompt(s) for Target Agents
-- Manager prompt (if Manager exists):
-- Operativo prompt (if Operativo exists):
-- Single-agent prompt (if only one agent exists):
-- Governance/agentic introduction plan (if 0 agents and needed):
-
-## Audit Summary
-- Scope:
-- Result:
-
-## Required Actions
-1. 
-2. 
+## Operational Prompt (Enterprise Complete)
+- obiettivo:
+- scope:
+- vincoli:
+- azioni:
+- validazioni:
+- criteri_di_accettazione:
+- rollback_fallback:
+- output_richiesto:

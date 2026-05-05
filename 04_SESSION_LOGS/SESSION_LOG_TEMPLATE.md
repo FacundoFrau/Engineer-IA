@@ -1,25 +1,29 @@
 # Session Log Template
 
-## Session Metadata
-- Session ID:
-- Date:
-- Operator/Agent Role:
-- session_state:
+## Language Gate
+- output_language: italiano
 
-## Target Context
-- target_project (required only if target audit esplicito; else N/A):
-- target_workdir (required only if target audit esplicito; else N/A):
-- target mutation authorized (required only if target audit esplicito; else N/A):
+## Enterprise Coverage Matrix
+- governance: auditato/non auditato + motivo
+- topologia agentica: auditato/non auditato + motivo
+- data-plane: auditato/non auditato + motivo
+- source-of-truth chain: auditato/non auditato + motivo
+- authority boundaries: auditato/non auditato + motivo
+- handoff/escalation: auditato/non auditato + motivo
+- validator/check: auditato/non auditato + motivo
+- workflow end-to-end: auditato/non auditato + motivo
+- release lifecycle: auditato/non auditato + motivo
+- security/secret hygiene: auditato/non auditato + motivo
+- logging/evidence: auditato/non auditato + motivo
+- rollback: auditato/non auditato + motivo
+- test coverage: auditato/non auditato + motivo
+- KPI/observability: auditato/non auditato + motivo
 
-## Owner Routing Gate
-- owner: Manager / Operativo / Misto / Nessun agente
-- ownership rationale:
-- modification scope:
-- primary prompt:
-- secondary prompt (if applicable):
-- escalation trigger/path:
+## Security Severity Gate
+- confirmed_secret_exposed_valid_operational: yes/no
+- severity_rule_applied:
 
-## Operator Intent & Operational Continuity Gate
+## Operator Intent & Continuity
 - operator_intent_required: yes/no
 - operator_intent_question:
 - risk_if_unchanged:
@@ -29,11 +33,17 @@
 - recommended_remediation:
 - fallback_rollback:
 
-## Findings
-- 
+## External Research
+- external_research_required: yes/no
+- reason_non_local_dependency:
+- sources_and_date:
 
-## Risks
-- 
-
-## Next Action
-- 
+## Operational Prompt (Enterprise Complete)
+- obiettivo:
+- scope:
+- vincoli:
+- azioni:
+- validazioni:
+- criteri_di_accettazione:
+- rollback_fallback:
+- output_richiesto:

@@ -1,84 +1,26 @@
 # Quality Bar
 
-## Enterprise Readiness
-- Ruolo unico Architect definito come Target Agent Architecture Hub.
-- Audit iniziale obbligatorio e capability architetturale operativa disponibili.
+## Language Gate
+- Output verso operatore in italiano con eccezioni tecniche ammesse.
 
-## Precisione
-- Scope audit esplicito e non ambiguo.
-- Topologia reale documentata (0/1/2/3+/altro).
-- Findings e remediation tracciabili a evidenze verificabili.
+## Enterprise Complete Audit Gate
+- Audit completo solo con copertura delle 14 sezioni minime.
+- Sezioni non coperte marcate `non auditato` + motivo.
 
-## Auditabilita
-- Decisioni non banali registrate nel decision log.
-- Evidenze di validazione disponibili e riferibili.
+## Security Severity Gate
+- Finding security/secrets non confermato => P1.
+- P0 solo con rischio bloccante confermato e segreto valido/operativo/esposto.
 
-## Architecture Capability
-- Audit e fase iniziale, non limite.
-- Ammesso modellare/rimodellare topologie target con evidenze.
-- Output operativi (prompt/piani) coerenti con topologia reale.
+## Operator Intent and Continuity
+- Operator intent obbligatorio prima di remediation impattante.
+- Preserve operability, safe alternatives e rollback/fallback obbligatori.
 
-## Owner Routing Enforcement
-- Owner Routing Gate obbligatorio per ogni finding.
-- Owner enum obbligatorio: Manager / Operativo / Misto / Nessun agente.
-- Manager-owned richiede Manager primary prompt.
-- Operativo prompt ammesso solo con runtime/data-plane need.
-- Misto richiede Manager->Operativo sequence.
-- Nessun agente: proposta struttura solo evidence-based.
+## External Research Gate
+- Obbligatoria per remediation tecnica/security dipendente da standard/vendor/tool behavior non verificabile localmente.
 
-## Operator Intent & Operational Continuity
-- Operator Intent Gate obbligatorio per finding potenzialmente operativi.
-- Confronto obbligatorio: risk_if_unchanged vs risk_if_removed.
-- Preserve operability check obbligatorio.
-- Safe alternatives obbligatorie per remediation impattante.
-- fallback_rollback obbligatorio per remediation impattante.
-
-## Required Finding Fields
-- owner
-- ownership rationale
-- modification scope
-- operator_intent_required
-- operator_intent_question
-- risk_if_unchanged
-- risk_if_removed
-- preserve_operability
-- safe_alternatives
-- recommended_remediation
-- fallback_rollback
-- primary prompt
-- secondary prompt (if applicable)
-- escalation trigger/path
-
-## Target-Fit Remediation
-- Remediation deve essere target-fit, non framework-fit.
-- Ogni raccomandazione strutturale richiede target-fit rationale e structural-change evidence gate.
-- Ogni raccomandazione deve includere acceptance criteria.
-
-## Evidence Taxonomy
-- Obbligatorio distinguere: Evidence, Inference, Assumption, External research, Mitigated risk.
-
-## No Framework Leakage
-- Vietato imporre governance IA Engineer al target senza necessita provata da evidenze.
-- No-framework-leakage check obbligatorio.
+## Operational Prompt Completeness
+- Prompt operativo completo con 8 blocchi obbligatori.
 
 ## Authorization Guardrail
 - Vietata modifica target senza autorizzazione esplicita.
 - Vietata creazione agenti target nel repository IA Engineer.
-
-## P0 Gate
-- P0 ammesso solo con rischio bloccante confermato.
-
-## External Research Trigger
-- Ricerca esterna obbligatoria solo se la conclusione dipende da standard/tool/vendor/best practice non verificabili localmente.
-
-## No Regressioni
-- Ogni aggiornamento deve preservare i requisiti baseline.
-- Regressioni note devono essere bloccanti o esplicitamente accettate con motivazione.
-
-## No Output Generico
-- Vietati output vaghi, narrativi o non azionabili.
-- Obbligo di criteri tecnici misurabili.
-
-## No Source-of-Truth Duplicata
-- Policy e regole risiedono in file univoci di governance.
-- Skills/hooks non sostituiscono governance core.

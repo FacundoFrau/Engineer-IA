@@ -124,3 +124,14 @@
 - Impact: governance/template/protocolli/validator estesi con campi intent/continuity
 - Risks: overhead analitico addizionale
 - Follow-up: validare gate sul prossimo audit target reale
+
+- Date: 2026-05-05
+- Owner: AI Engineer / Principal Agent Architect
+- Decision ID: DEC-2026-05-05-12
+- Context: audit reale parziale con gap su lingua, completezza coverage, security remediation e prompt operativi
+- Options Considered: mantenere enforcement attuale / introdurre hardening enterprise coverage + language + security + prompt completeness
+- Decision: introdurre gate obbligatori su lingua, coverage matrix, non auditato disclosure, security severity, operator intent, external research e prompt a 8 blocchi
+- Rationale: aumentare affidabilita enterprise ed evitare audit incompleti o remediation rischiose
+- Impact: governance/template/protocolli/validator estesi con controlli minimi obbligatori
+- Risks: maggiore onere di compilazione
+- Follow-up: validare su prossimo audit target reale la sostenibilita operativa del modello

@@ -1,18 +1,13 @@
 # Remediation Plan Template
 
-## Context
-- Target project:
-- Audit reference:
+## Language Gate
+- output_language: italiano
 
-## Owner Routing Gate
-- owner: Manager / Operativo / Misto / Nessun agente
-- ownership rationale:
-- modification scope:
-- primary prompt:
-- secondary prompt (if applicable):
-- escalation trigger/path:
+## Security Severity
+- confirmed_secret_exposed_valid_operational: yes/no
+- severity_rule: P1 if unconfirmed / P0 if confirmed
 
-## Operator Intent & Operational Continuity Gate
+## Operator Intent & Continuity
 - operator_intent_required: yes/no
 - operator_intent_question:
 - risk_if_unchanged:
@@ -22,57 +17,17 @@
 - recommended_remediation:
 - fallback_rollback:
 
-## Discovered Topology
-- Topology class: 0 agenti / 1 agente / Manager+Operativo / 3+ agenti / altro modello rilevato
+## External Research
+- external_research_required: yes/no
+- reason_non_local_dependency:
+- sources_and_date:
 
-## Topology Options
-- Keep current:
-- Reduce:
-- Expand:
-- Refactor to alternative model:
-
-## Architecture Alternatives
-- Recommended architecture:
-- Alternative architecture 1:
-- Alternative architecture 2:
-- Trade-off summary:
-
-## Target-Fit Rationale
-- Why this remediation is target-fit:
-- No-framework-leakage check:
-
-## Evidence Taxonomy
-- Evidence:
-- Inference:
-- Assumption:
-- External research:
-- Mitigated risk:
-
-## Structural-Change Evidence Gate
-- Structural change proposed: yes/no
-- If yes, evidence in target files:
-- Scope/risk/complexity/data-plane/operational impact:
-- Acceptance criteria:
-
-## Severity Gate
-- P0 used: yes/no
-- If yes, blocking risk confirmed:
-
-## External Research Trigger
-- Non-local standard/tool/vendor/best practice dependency: yes/no
-- If yes, sources and date:
-
-## Operational Prompt(s) for Target Agents
-- Manager prompt (if Manager exists):
-- Operativo prompt (if Operativo exists):
-- Single-agent prompt (if only one agent exists):
-- Governance/agentic introduction plan (if 0 agents and needed):
-
-## Prioritized Actions
-1. P0:
-2. P1:
-3. P2:
-
-## Ownership and ETA
-- Owner:
-- ETA:
+## Operational Prompt (Enterprise Complete)
+- obiettivo:
+- scope:
+- vincoli:
+- azioni:
+- validazioni:
+- criteri_di_accettazione:
+- rollback_fallback:
+- output_richiesto:

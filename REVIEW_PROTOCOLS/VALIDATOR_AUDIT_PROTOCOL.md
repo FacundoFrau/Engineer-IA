@@ -1,17 +1,11 @@
 # Validator Audit Protocol
 
-## Objective
-Verificare che il validator enforcement controlli marker/sezioni obbligatorie di Owner Routing e Operator Intent Gate.
-
 ## Mandatory Checks
-1. FAIL se manca Operator Intent Gate.
-2. FAIL se template consente remediation distruttiva senza operator intent check.
-3. FAIL se manca risk_if_unchanged o risk_if_removed.
-4. FAIL se manca preserve_operability o safe_alternatives.
-5. FAIL se manca fallback_rollback su remediation impattante.
-6. FAIL se P0 non richiede blocking risk confermato.
-7. P0/P1 bloccanti, P2 warn salvo strict.
-
-## Output
-- Esito validazione.
-- Gap di copertura e remediation.
+1. FAIL se manca Language Gate.
+2. FAIL se manca Enterprise Complete Audit coverage.
+3. FAIL se manca non auditato + motivo.
+4. FAIL se prompt operativo non ha 8 blocchi.
+5. FAIL se manca security severity rule P1/P0.
+6. FAIL se remediation tecnica/security manca external research trigger.
+7. FAIL se manca operator intent gate per remediation impattante.
+8. P0/P1 bloccanti, P2 warn salvo strict.
