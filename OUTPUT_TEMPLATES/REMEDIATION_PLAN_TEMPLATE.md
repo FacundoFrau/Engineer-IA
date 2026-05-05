@@ -11,9 +11,16 @@
 - primary prompt:
 - secondary prompt (if applicable):
 - escalation trigger/path:
-- Manager-owned => Manager primary prompt check: pass/fail
-- Operativo prompt only with runtime/data-plane need check: pass/fail
-- Misto Manager->Operativo sequence check: pass/fail
+
+## Operator Intent & Operational Continuity Gate
+- operator_intent_required: yes/no
+- operator_intent_question:
+- risk_if_unchanged:
+- risk_if_removed:
+- preserve_operability: yes/no
+- safe_alternatives:
+- recommended_remediation:
+- fallback_rollback:
 
 ## Discovered Topology
 - Topology class: 0 agenti / 1 agente / Manager+Operativo / 3+ agenti / altro modello rilevato
@@ -49,7 +56,7 @@
 
 ## Severity Gate
 - P0 used: yes/no
-- If yes, blocking risk demonstrated:
+- If yes, blocking risk confirmed:
 
 ## External Research Trigger
 - Non-local standard/tool/vendor/best practice dependency: yes/no

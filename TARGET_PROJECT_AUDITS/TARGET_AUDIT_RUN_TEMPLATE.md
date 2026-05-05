@@ -12,10 +12,6 @@
 - target_workdir (required if yes, else N/A):
 - target mutation authorized: yes/no
 
-## Audit Scope
-- In scope:
-- Out of scope:
-
 ## Owner Routing Gate
 - owner: Manager / Operativo / Misto / Nessun agente
 - ownership rationale:
@@ -23,9 +19,16 @@
 - primary prompt:
 - secondary prompt (if applicable):
 - escalation trigger/path:
-- Manager-owned => Manager primary prompt check: pass/fail
-- Operativo prompt only with runtime/data-plane need check: pass/fail
-- Misto Manager->Operativo sequence check: pass/fail
+
+## Operator Intent & Operational Continuity Gate
+- operator_intent_required: yes/no
+- operator_intent_question:
+- risk_if_unchanged:
+- risk_if_removed:
+- preserve_operability: yes/no
+- safe_alternatives:
+- recommended_remediation:
+- fallback_rollback:
 
 ## Method vs Solution Guardrail
 - topology-discovery-first used as internal method: yes/no
@@ -73,7 +76,7 @@
 ## Findings
 - Finding ID:
 - Severity (P0/P1/P2):
-- P0 blocking risk demonstrated (required if P0):
+- P0 blocking risk confirmed (required if P0):
 - Evidence:
 - Impact:
 - Recommended remediation:

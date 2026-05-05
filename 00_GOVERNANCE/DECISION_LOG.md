@@ -113,3 +113,14 @@
 - Impact: governance/template/protocolli/validator allineati a routing ownership-first
 - Risks: incremento overhead documentale
 - Follow-up: validare su audit target reale accuracy del routing
+
+- Date: 2026-05-05
+- Owner: AI Engineer / Principal Agent Architect
+- Decision ID: DEC-2026-05-05-11
+- Context: prevenire remediation impattanti senza verifica intent operativo
+- Options Considered: verifiche ad-hoc / Operator Intent & Operational Continuity Gate obbligatorio
+- Decision: introdurre gate obbligatorio con confronto rischio invariato/rimosso, alternative sicure e fallback/rollback
+- Rationale: ridurre regressioni operative e preservare continuita del target
+- Impact: governance/template/protocolli/validator estesi con campi intent/continuity
+- Risks: overhead analitico addizionale
+- Follow-up: validare gate sul prossimo audit target reale

@@ -18,12 +18,16 @@
 - primary prompt:
 - secondary prompt (if applicable):
 - escalation trigger/path:
-- manager_primary_check:
-- operativo_scope_check:
-- misto_sequence_check:
 
-## Audit Scope
-- 
+## Operator Intent & Operational Continuity Gate
+- operator_intent_required: yes/no
+- operator_intent_question:
+- risk_if_unchanged:
+- risk_if_removed:
+- preserve_operability: yes/no
+- safe_alternatives:
+- recommended_remediation:
+- fallback_rollback:
 
 ## Findings
 - 

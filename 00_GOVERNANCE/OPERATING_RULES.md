@@ -15,7 +15,7 @@
 - Remediation target-fit obbligatoria con target-fit rationale.
 - No framework leakage check obbligatorio per ogni proposta strutturale.
 - Structural-change evidence gate obbligatorio prima di raccomandare cambi strutturali.
-- P0 solo con rischio bloccante dimostrato.
+- P0 solo con rischio bloccante confermato.
 - `target_project` e `target_workdir` sono obbligatori solo per sessioni con audit target esplicito; per sessioni interne usare `N/A`.
 - Nessuna creazione di agenti target interni; `06_AGENTS` vietata.
 - Nessuna modifica al target senza autorizzazione esplicita.
@@ -29,15 +29,29 @@
 - Nessun agente => proposta struttura solo evidence-based.
 - Vietato default Operativo primary prompt per sola presenza Operativo.
 
+## Operator Intent & Operational Continuity Rules
+- Per finding potenzialmente operativi, operator intent check obbligatorio.
+- Campi obbligatori: operator_intent_required, operator_intent_question, risk_if_unchanged, risk_if_removed.
+- Preserve operability check obbligatorio prima di remediation impattante.
+- Safe alternatives obbligatorie quando possibile.
+- Fallback/rollback obbligatorio per remediation impattante.
+
 ## Operational Output Rules
 - Ogni finding deve includere:
   - owner,
   - ownership rationale,
   - modification scope,
+  - operator_intent_required,
+  - operator_intent_question,
+  - risk_if_unchanged,
+  - risk_if_removed,
+  - preserve_operability,
+  - safe_alternatives,
+  - recommended_remediation,
+  - fallback_rollback,
   - primary prompt,
   - secondary prompt (if applicable),
   - escalation trigger/path.
-- Gli output operativi devono adattarsi alla topologia e ownership rilevate.
 
 ## Evidence and Research Rules
 - Ogni finding/raccomandazione deve distinguere: Evidence, Inference, Assumption, External research, Mitigated risk.

@@ -29,12 +29,28 @@
 - Nessun agente => proposta struttura solo evidence-based.
 - Vietato Operativo primary prompt come default solo per esistenza Operativo.
 
+## Operator Intent & Operational Continuity Gate (Binding)
+- Prima di remediation distruttiva o potenzialmente impattante:
+  1. classificare il rischio,
+  2. distinguere Evidence/Inference/Assumption,
+  3. verificare operator intent con Manager/Operatore,
+  4. valutare alternative sicure preservando operabilita,
+  5. definire fallback/rollback,
+  6. elevare a P0 solo con rischio bloccante confermato.
+
 ## Operational Output Policy (Binding)
-- Gli output devono produrre prompt/piani adeguati a topologia e ownership reale.
 - Ogni finding deve includere:
   - owner,
   - ownership rationale,
   - modification scope,
+  - operator_intent_required,
+  - operator_intent_question,
+  - risk_if_unchanged,
+  - risk_if_removed,
+  - preserve_operability,
+  - safe_alternatives,
+  - recommended_remediation,
+  - fallback_rollback,
   - primary prompt,
   - secondary prompt (if applicable),
   - escalation trigger/path.
@@ -64,7 +80,7 @@ Ogni finding/raccomandazione deve distinguere:
 - Ricerca esterna obbligatoria solo se la conclusione dipende da standard/tool/vendor/best practice non verificabili localmente.
 
 ## Severity Policy (Binding)
-- P0 consentito solo con rischio bloccante dimostrato.
+- P0 consentito solo con rischio bloccante confermato.
 - P1/P2 per gap non bloccanti.
 
 ## Session Bootstrap (Mandatory)

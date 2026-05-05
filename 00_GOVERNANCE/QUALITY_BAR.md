@@ -26,10 +26,25 @@
 - Misto richiede Manager->Operativo sequence.
 - Nessun agente: proposta struttura solo evidence-based.
 
+## Operator Intent & Operational Continuity
+- Operator Intent Gate obbligatorio per finding potenzialmente operativi.
+- Confronto obbligatorio: risk_if_unchanged vs risk_if_removed.
+- Preserve operability check obbligatorio.
+- Safe alternatives obbligatorie per remediation impattante.
+- fallback_rollback obbligatorio per remediation impattante.
+
 ## Required Finding Fields
 - owner
 - ownership rationale
 - modification scope
+- operator_intent_required
+- operator_intent_question
+- risk_if_unchanged
+- risk_if_removed
+- preserve_operability
+- safe_alternatives
+- recommended_remediation
+- fallback_rollback
 - primary prompt
 - secondary prompt (if applicable)
 - escalation trigger/path
@@ -51,7 +66,7 @@
 - Vietata creazione agenti target nel repository IA Engineer.
 
 ## P0 Gate
-- P0 ammesso solo con rischio bloccante dimostrato.
+- P0 ammesso solo con rischio bloccante confermato.
 
 ## External Research Trigger
 - Ricerca esterna obbligatoria solo se la conclusione dipende da standard/tool/vendor/best practice non verificabili localmente.

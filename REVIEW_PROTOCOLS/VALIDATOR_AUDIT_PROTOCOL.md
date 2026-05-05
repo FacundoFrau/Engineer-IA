@@ -1,17 +1,16 @@
 # Validator Audit Protocol
 
 ## Objective
-Verificare che il validator enforcement controlli marker/sezioni obbligatorie di Owner Routing.
+Verificare che il validator enforcement controlli marker/sezioni obbligatorie di Owner Routing e Operator Intent Gate.
 
 ## Mandatory Checks
-1. FAIL se manca Owner Routing section.
-2. FAIL se manca owner enum (Manager/Operativo/Misto/Nessun agente).
-3. FAIL se mancano ownership rationale/modification scope/prompt/escalation fields.
-4. FAIL se manca regola Manager-owned => Manager primary prompt.
-5. FAIL se manca regola Operativo prompt solo con runtime/data-plane need.
-6. FAIL se manca regola Misto Manager->Operativo sequence.
-7. FAIL se manca regola Nessun agente evidence-based.
-8. P0/P1 bloccanti, P2 warn salvo strict.
+1. FAIL se manca Operator Intent Gate.
+2. FAIL se template consente remediation distruttiva senza operator intent check.
+3. FAIL se manca risk_if_unchanged o risk_if_removed.
+4. FAIL se manca preserve_operability o safe_alternatives.
+5. FAIL se manca fallback_rollback su remediation impattante.
+6. FAIL se P0 non richiede blocking risk confermato.
+7. P0/P1 bloccanti, P2 warn salvo strict.
 
 ## Output
 - Esito validazione.

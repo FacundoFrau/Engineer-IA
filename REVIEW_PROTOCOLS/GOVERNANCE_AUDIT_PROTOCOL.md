@@ -1,19 +1,17 @@
 # Governance Audit Protocol
 
 ## Objective
-Verificare governance target con Owner Routing enforcement e prompt ownership-correct.
+Verificare governance target con Owner Routing enforcement e Operator Intent/Operational Continuity gate.
 
 ## Mandatory Checks
 1. Owner Routing Gate presente.
-2. Owner enum presente: Manager/Operativo/Misto/Nessun agente.
-3. ownership rationale + modification scope presenti.
-4. primary/secondary prompt fields presenti.
-5. escalation trigger/path presente.
-6. Regola Manager-owned => Manager primary prompt applicata.
-7. Operativo prompt solo con runtime/data-plane need.
-8. Misto con Manager->Operativo sequence.
-9. Nessun agente solo evidence-based.
+2. Operator Intent & Operational Continuity Gate presente.
+3. operator_intent_required e operator_intent_question presenti.
+4. risk_if_unchanged e risk_if_removed presenti.
+5. preserve_operability e safe_alternatives presenti.
+6. fallback_rollback presente per remediation impattante.
+7. P0 usato solo con blocking risk confermato.
 
 ## Output
 - Findings con severita P0/P1/P2.
-- Remediation plan e prompt operativi ownership-correct.
+- Remediation plan e prompt operativi ownership-correct con continuita operativa preservata.
