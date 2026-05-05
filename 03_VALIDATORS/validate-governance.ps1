@@ -55,6 +55,16 @@ function Forbid-Markers {
     Pass "Forbidden-marker check eseguito: $path"
 }
 
+function Require-Regex {
+    param([string]$path,[string[]]$patterns,[string]$sev='P1')
+    if (-not (Test-Path -Path $path -PathType Leaf)) { Add-Finding $sev "File mancante per regex check: $path"; return }
+    $c = Get-Content -Path $path -Raw
+    foreach ($p in $patterns) {
+        if ($c -notmatch $p) { Add-Finding $sev "Pattern mancante in ${path}: ${p}" }
+    }
+    Pass "Regex check eseguito: $path"
+}
+
 # P0: git repo must exist
 $gitOk = $false
 try {
@@ -77,7 +87,7 @@ if (Test-Path -Path '06_AGENTS' -PathType Container) {
 $requiredFiles = @(
     'AGENTS.md','README.md',
     '00_GOVERNANCE/PROJECT_CHARTER.md','00_GOVERNANCE/OPERATING_RULES.md','00_GOVERNANCE/QUALITY_BAR.md','00_GOVERNANCE/DECISION_LOG.md',
-    '02_WORKFLOWS/SESSION_BOOTSTRAP.md','03_VALIDATORS/validate-governance.ps1','04_SESSION_LOGS/SESSION_LOG_TEMPLATE.md',
+    '02_WORKFLOWS/SESSION_BOOTSTRAP.md','03_VALIDATORS/validate-governance.ps1','04_SESSION_LOGS/SESSION_LOG_TEMPLATE.md','04_SESSION_LOGS/session-2026-05-05.md',
     'TARGET_PROJECT_AUDITS/README.md','TARGET_PROJECT_AUDITS/TARGET_AUDIT_RUN_TEMPLATE.md',
     'REVIEW_PROTOCOLS/GOVERNANCE_AUDIT_PROTOCOL.md','REVIEW_PROTOCOLS/WORKFLOW_AUDIT_PROTOCOL.md','REVIEW_PROTOCOLS/VALIDATOR_AUDIT_PROTOCOL.md',
     'OUTPUT_TEMPLATES/REMEDIATION_PLAN_TEMPLATE.md','TARGET_HANDOFFS/TARGET_HANDOFF_TEMPLATE.md',
@@ -99,28 +109,35 @@ if ($logs.Count -lt 1) {
     Pass 'Session log reale presente.'
 }
 
-Require-Markers 'AGENTS.md' @('single IA Engineer','audit-only','Non e consentita la creazione di agenti target interni','Directory `06_AGENTS` proibita')
-Require-Markers '00_GOVERNANCE/PROJECT_CHARTER.md' @('hub di audit','progetti target esterni','Non-Objectives')
-Require-Markers '00_GOVERNANCE/OPERATING_RULES.md' @('modalita audit-only','target_project','target_workdir','Nessuna creazione di agenti target interni')
-Require-Markers '00_GOVERNANCE/QUALITY_BAR.md' @('Audit-Only Guardrail','01_AGENT_DESIGN e legacy/reference, non core path','Directory `06_AGENTS` proibita')
-Require-Markers '02_WORKFLOWS/SESSION_BOOTSTRAP.md' @('target_project','target_workdir','obbligatori solo in sessioni con audit target esplicito','Mandatory Session Log Update')
-Require-Markers '01_AGENT_DESIGN/README.md' @('DEPRECATED / NON-CORE PATH','legacy/reference','Mapping verso nuovo modello audit hub')
-Require-Markers '04_SESSION_LOGS/SESSION_LOG_TEMPLATE.md' @('session_state','target_project (optional; required only if target audit esplicito)','target_workdir (optional; required only if target audit esplicito)','Audit Scope','Findings','Risks','Next Action')
+# Core discovery markers
+Require-Markers 'AGENTS.md' @('audit-only','0 agenti','1 agente','2 agenti','3+ agenti','Manager+Operativo','non default obbligatorio')
+Require-Markers '00_GOVERNANCE/PROJECT_CHARTER.md' @('topology discovery','proporzionalita','Non-Objectives')
+Require-Markers '00_GOVERNANCE/OPERATING_RULES.md' @('0/1/2/3+ agenti','scope, complessita, rischio, data-plane, frequenza modifiche, handoff/escalation','N/A')
+Require-Markers '00_GOVERNANCE/QUALITY_BAR.md' @('Topologie ammesse: 0 agenti, 1 agente, 2 agenti, 3+ agenti','Data-plane ammessi: single o multi','Proportionality assessment obbligatorio','source-of-truth chain','authority boundaries')
+Require-Markers '02_WORKFLOWS/SESSION_BOOTSTRAP.md' @('target_project','target_workdir','N/A','Topology discovery fields')
+Require-Markers 'TARGET_PROJECT_AUDITS/TARGET_AUDIT_RUN_TEMPLATE.md' @('Discovered topology class','0 agenti / 1 agente / 2 agenti / 3+ agenti','Data-plane type: single / multi','Source-of-Truth Chain','Authority Boundaries','Handoff / Escalation','Proportionality Assessment','Frequenza modifiche fit')
+Require-Markers 'REVIEW_PROTOCOLS/GOVERNANCE_AUDIT_PROTOCOL.md' @('0/1/2/3+ agenti','single/multi','Source-of-truth chain','Authority boundaries','Proportionality assessment')
+Require-Markers 'REVIEW_PROTOCOLS/WORKFLOW_AUDIT_PROTOCOL.md' @('Topology discovery esplicito','Handoff/escalation','authority boundaries','proportionality')
+Require-Markers 'REVIEW_PROTOCOLS/VALIDATOR_AUDIT_PROTOCOL.md' @('0/1/2/3+','single/multi data-plane','source-of-truth chain','authority boundaries','handoff/escalation','non obbligatorio')
+Require-Markers 'OUTPUT_TEMPLATES/REMEDIATION_PLAN_TEMPLATE.md' @('Discovered topology class','Data-plane type','Authority boundary changes','Handoff/escalation changes','frequenza modifiche')
+Require-Markers 'TARGET_HANDOFFS/TARGET_HANDOFF_TEMPLATE.md' @('Topology Context','Source-of-truth chain status','Authority Boundaries','Handoff / Escalation')
+Require-Markers '04_SESSION_LOGS/SESSION_LOG_TEMPLATE.md' @('target_project (required only if target audit esplicito; else N/A)','target_workdir (required only if target audit esplicito; else N/A)','Topology Discovery','Data-plane type: single / multi','Source-of-truth chain status','Authority boundaries status','Frequenza modifiche')
 
-# Forbidden legacy-core framing in governance
-$forbiddenCore = @('Agent Creation Workflow','factory operativa di agent design interno','Spec agente completa e non vaga')
-Forbid-Markers 'AGENTS.md' $forbiddenCore
-Forbid-Markers '00_GOVERNANCE/PROJECT_CHARTER.md' @('Progettare agenti con specifiche complete e verificabili')
-Forbid-Markers '00_GOVERNANCE/OPERATING_RULES.md' @('Ogni agente deve rispettare')
-Forbid-Markers '00_GOVERNANCE/QUALITY_BAR.md' @('Spec agente')
+# Fail on fixed-topology obligation
+$fixedForbidden = @(
+    'default obbligatorio: Manager\+Operativo',
+    'Manager\+Operativo obbligatorio',
+    'topologia fissa obbligatoria',
+    'topologia predefinita obbligatoria'
+)
+Require-Regex 'AGENTS.md' @('Manager\+Operativo.*non default obbligatorio')
+Forbid-Markers 'AGENTS.md' $fixedForbidden
+Forbid-Markers '00_GOVERNANCE/PROJECT_CHARTER.md' @('topologia predefinita come obbligatoria')
+Forbid-Markers '00_GOVERNANCE/OPERATING_RULES.md' @('Manager\+Operativo obbligatorio','topologia fissa obbligatoria')
+Forbid-Markers '00_GOVERNANCE/QUALITY_BAR.md' @('Manager\+Operativo obbligatorio','topologia fissa obbligatoria')
 
-# Session log validity markers on current log
-$realLogPath = '04_SESSION_LOGS/session-2026-05-05.md'
-if (Test-Path $realLogPath) {
-    Require-Markers $realLogPath @('Session ID: session-2026-05-05','## Validation','## Residual Risks','## Next Action') 'P1'
-} else {
-    Add-Finding 'P1' "Session log atteso mancante: $realLogPath"
-}
+# Current session log markers
+Require-Markers '04_SESSION_LOGS/session-2026-05-05.md' @('Topology Discovery Realignment Update - 2026-05-05','target_project: N/A','target_workdir: N/A','proportionality_assessment','next_action') 'P1'
 
 Write-Host "SUMMARY P0=$p0 P1=$p1 P2=$p2 Strict=$Strict"
 if ($hasBlocking) {

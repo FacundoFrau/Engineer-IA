@@ -7,8 +7,8 @@
 - session_state:
 
 ## Target Context
-- target_project (optional; required only if target audit esplicito):
-- target_workdir (optional; required only if target audit esplicito):
+- target_project (required only if target audit esplicito; else N/A):
+- target_workdir (required only if target audit esplicito; else N/A):
 
 ## Bootstrap Evidence
 - AGENTS/governance read:
@@ -21,6 +21,21 @@
 
 ## Audit Scope
 - 
+
+## Topology Discovery
+- Discovered topology class: 0 agenti / 1 agente / 2 agenti / 3+ agenti
+- Data-plane type: single / multi
+- Source-of-truth chain status:
+- Authority boundaries status:
+
+## Proportionality Assessment
+- Scope:
+- Complessita:
+- Rischio:
+- Data-plane:
+- Frequenza modifiche:
+- Handoff/escalation:
+- Final verdict:
 
 ## Actions Executed
 1. 

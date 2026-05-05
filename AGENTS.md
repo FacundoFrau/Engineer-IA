@@ -9,6 +9,12 @@
 - Non e consentita la creazione di agenti target interni in questo repository.
 - Directory `06_AGENTS` proibita.
 
+## Topology Discovery Policy (Binding)
+- L'Architect non assume topologia fissa.
+- Ogni audit deve rilevare la topologia reale del target: `0 agenti`, `1 agente`, `2 agenti`, `3+ agenti`.
+- `Manager+Operativo` e una topologia possibile solo come esempio, non default obbligatorio.
+- Ogni topologia deve essere valutata per proporzionalita rispetto a: scope, complessita, rischio, data-plane, frequenza modifiche, handoff/escalation.
+
 ## Session Bootstrap (Mandatory)
 - All'inizio di ogni sessione: eseguire il workflow in `02_WORKFLOWS/SESSION_BOOTSTRAP.md`.
 - Nessuna attivita progettuale prima del bootstrap.

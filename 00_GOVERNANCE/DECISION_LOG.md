@@ -69,3 +69,14 @@
 - Impact: nuovo percorso core basato su protocolli/template audit; `01_AGENT_DESIGN` deprecato come legacy/reference
 - Risks: necessita disciplina nel mantenere coerenza tra governance core e validator
 - Follow-up: audit periodico del validator e dei protocolli review
+
+- Date: 2026-05-05
+- Owner: AI Engineer / Principal Agent Architect
+- Decision ID: DEC-2026-05-05-07
+- Context: riallineare il modello audit hub verso topology discovery senza topologia fissa
+- Options Considered: topologia predefinita / topology discovery 0-1-2-3+
+- Decision: adottare modello `topology-discovery-first` con valutazione di proporzionalita
+- Rationale: evitare assunzioni invalide e garantire adeguatezza architetturale rispetto a scopo, complessita, rischio e data-plane
+- Impact: governance/template/protocolli/validator estesi per coverage topologica e authority boundaries
+- Risks: aumento onere documentale iniziale
+- Follow-up: calibrare i criteri di proportionality su casi reali multi-target
