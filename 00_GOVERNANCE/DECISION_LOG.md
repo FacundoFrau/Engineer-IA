@@ -47,3 +47,14 @@
 - Impact: sustained governance quality
 - Risks: discipline required to maintain cadence
 - Follow-up: execute weekly review and log outcomes
+
+- Date: 2026-05-05
+- Owner: AI Engineer / Principal Agent Architect
+- Decision ID: DEC-2026-05-05-05
+- Context: remote Git non configurato e target potenziale GitHub Free
+- Options Considered: nessun remoto / remoto privato GitHub Free come backup-audit
+- Decision: raccomandare remoto privato GitHub Free come backup/audit remoto, non come enforcement enterprise completo
+- Rationale: preservare tracciabilita off-machine senza sovrastimare i controlli disponibili su piano Free
+- Impact: migliora resilienza e audit remoto; enforcement avanzato resta in governance locale/processo
+- Risks: assenza temporanea di backup remoto finche URL non disponibile
+- Follow-up: quando disponibile URL, eseguire `git remote add origin <REMOTE_URL>` e `git push -u origin main`
