@@ -6,17 +6,33 @@
 
 ## Precisione
 - Scope audit esplicito e non ambiguo.
-- Topologia reale documentata (`0/1/2/3+`).
 - Findings e remediation tracciabili a evidenze verificabili.
 
 ## Auditabilita
 - Decisioni non banali registrate nel decision log.
 - Evidenze di validazione disponibili e riferibili.
-- Source-of-truth chain e authority boundaries esplicitati.
 
 ## Determinismo
 - Processo ripetibile con esiti consistenti a parita di condizioni.
 - Riduzione della variabilita non motivata.
+
+## Target-Fit Remediation
+- Remediation deve essere target-fit, non framework-fit.
+- Ogni raccomandazione strutturale richiede target-fit rationale e structural-change evidence gate.
+- Ogni raccomandazione deve includere acceptance criteria verificabile.
+
+## Evidence Taxonomy
+- Obbligatorio distinguere: Evidence, Inference, Assumption, External research, Mitigated risk.
+
+## No Framework Leakage
+- Vietato imporre governance IA Engineer al target senza necessita provata da evidenze.
+- No-framework-leakage check obbligatorio.
+
+## P0 Gate
+- P0 ammesso solo con rischio bloccante dimostrato.
+
+## External Research Trigger
+- Ricerca esterna obbligatoria solo se la conclusione dipende da standard/tool/vendor/best practice non verificabili localmente.
 
 ## No Regressioni
 - Ogni aggiornamento deve preservare i requisiti baseline.
@@ -29,12 +45,6 @@
 ## No Source-of-Truth Duplicata
 - Policy e regole risiedono in file univoci di governance.
 - Skills/hooks non sostituiscono governance core.
-
-## Topology Proportionality
-- Nessuna topologia e default obbligatorio.
-- Topologie ammesse: 0 agenti, 1 agente, 2 agenti, 3+ agenti.
-- Data-plane ammessi: single o multi, con ownership e boundary espliciti.
-- Proportionality assessment obbligatorio: scope, complessita, rischio, data-plane, frequenza modifiche, handoff/escalation.
 
 ## Audit-Only Guardrail
 - Questo repository non crea agenti target interni.

@@ -15,6 +15,29 @@
 - In scope:
 - Out of scope:
 
+## Method vs Solution Guardrail
+- topology-discovery-first used as internal method: yes/no
+- topology-discovery-first imposed as target solution: forbidden
+- No-framework-leakage check: pass/fail + evidence
+
+## Evidence Taxonomy
+- Evidence:
+- Inference:
+- Assumption:
+- External research:
+- Mitigated risk:
+
+## Structural-Change Evidence Gate
+- Structural change proposed: yes/no
+- If yes, evidence in target files:
+- Target-fit rationale:
+- Operational impact:
+- Acceptance criteria verificabile:
+
+## External Research Trigger
+- Conclusion depends on non-local standard/tool/vendor/best practice: yes/no
+- If yes, research source and date:
+
 ## Topology Discovery
 - Discovered topology class: 0 agenti / 1 agente / 2 agenti / 3+ agenti
 - Topology evidence:
@@ -52,15 +75,10 @@
 - Handoff/escalation fit:
 - Final proportionality verdict:
 
-## Baseline Evidence
-- Governance files reviewed:
-- Workflow files reviewed:
-- Validator files reviewed:
-- Git snapshot:
-
 ## Findings
 - Finding ID:
 - Severity (P0/P1/P2):
+- P0 blocking risk demonstrated (required if P0):
 - Evidence:
 - Impact:
 - Recommended remediation:

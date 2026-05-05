@@ -80,3 +80,14 @@
 - Impact: governance/template/protocolli/validator estesi per coverage topologica e authority boundaries
 - Risks: aumento onere documentale iniziale
 - Follow-up: calibrare i criteri di proportionality su casi reali multi-target
+
+- Date: 2026-05-05
+- Owner: AI Engineer / Principal Agent Architect
+- Decision ID: DEC-2026-05-05-08
+- Context: prevenire framework leakage durante audit target
+- Options Considered: mantenere enforcement attuale / introdurre hardening target-fit + evidence taxonomy
+- Decision: introdurre hardening enforced per target-fit remediation, no framework leakage, P0 gate e external-research trigger condizionale
+- Rationale: evitare imposizione del metodo interno come soluzione target e migliorare auditabilita decisionale
+- Impact: governance/template/protocolli/validator allineati a evidenza > opinione
+- Risks: incremento overhead documentale
+- Follow-up: verificare applicazione su prossimi audit reali target

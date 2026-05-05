@@ -1,14 +1,15 @@
 # Workflow Audit Protocol
 
 ## Objective
-Verificare ripetibilita, criteri di accettazione e controlli bloccanti nei workflow target in relazione alla topologia reale.
+Verificare workflow target con remediation target-fit, no framework leakage e severita enforceable.
 
 ## Mandatory Checks
-1. Bootstrap obbligatorio e sequenza esplicita.
-2. Topology discovery esplicito (`0/1/2/3+`) prima delle decisioni operative.
-3. Handoff/escalation path coerenti con authority boundaries.
-4. Gates di qualita misurabili per proportionality assessment.
-5. Tracciamento evidenze e rischi residui.
+1. no-framework-leakage check nei passaggi decisionali.
+2. evidence taxonomy obbligatoria nei finding.
+3. structural-change evidence gate prima di raccomandazioni strutturali.
+4. P0 solo con blocking risk dimostrato.
+5. external-research trigger condizionale esplicito.
+6. acceptance criteria verificabile su remediation.
 
 ## Output
 - Findings con evidenze.

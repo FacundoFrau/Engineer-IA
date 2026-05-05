@@ -10,32 +10,32 @@
 - target_project (required only if target audit esplicito; else N/A):
 - target_workdir (required only if target audit esplicito; else N/A):
 
-## Bootstrap Evidence
-- AGENTS/governance read:
-- Last log reviewed:
-- Git status snapshot:
-
-## Project State
-- State: initialized / partial / not initialized
-- Evidence:
-
 ## Audit Scope
 - 
 
-## Topology Discovery
-- Discovered topology class: 0 agenti / 1 agente / 2 agenti / 3+ agenti
-- Data-plane type: single / multi
-- Source-of-truth chain status:
-- Authority boundaries status:
+## Target-Fit and Leakage Guardrail
+- Target-fit rationale:
+- No-framework-leakage check:
 
-## Proportionality Assessment
-- Scope:
-- Complessita:
-- Rischio:
-- Data-plane:
-- Frequenza modifiche:
-- Handoff/escalation:
-- Final verdict:
+## Evidence Taxonomy
+- Evidence:
+- Inference:
+- Assumption:
+- External research:
+- Mitigated risk:
+
+## Structural-Change Evidence Gate
+- Structural change proposed: yes/no
+- If yes, evidence in target files:
+- Acceptance criteria verificabile:
+
+## Severity Gate
+- P0 present: yes/no
+- If yes, blocking risk demonstrated:
+
+## External Research Trigger
+- Non-local standard/tool/vendor/best practice dependency: yes/no
+- If yes, sources and date:
 
 ## Actions Executed
 1. 

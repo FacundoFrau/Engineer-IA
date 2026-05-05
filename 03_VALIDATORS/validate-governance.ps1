@@ -55,16 +55,6 @@ function Forbid-Markers {
     Pass "Forbidden-marker check eseguito: $path"
 }
 
-function Require-Regex {
-    param([string]$path,[string[]]$patterns,[string]$sev='P1')
-    if (-not (Test-Path -Path $path -PathType Leaf)) { Add-Finding $sev "File mancante per regex check: $path"; return }
-    $c = Get-Content -Path $path -Raw
-    foreach ($p in $patterns) {
-        if ($c -notmatch $p) { Add-Finding $sev "Pattern mancante in ${path}: ${p}" }
-    }
-    Pass "Regex check eseguito: $path"
-}
-
 # P0: git repo must exist
 $gitOk = $false
 try {
@@ -88,7 +78,7 @@ $requiredFiles = @(
     'AGENTS.md','README.md',
     '00_GOVERNANCE/PROJECT_CHARTER.md','00_GOVERNANCE/OPERATING_RULES.md','00_GOVERNANCE/QUALITY_BAR.md','00_GOVERNANCE/DECISION_LOG.md',
     '02_WORKFLOWS/SESSION_BOOTSTRAP.md','03_VALIDATORS/validate-governance.ps1','04_SESSION_LOGS/SESSION_LOG_TEMPLATE.md','04_SESSION_LOGS/session-2026-05-05.md',
-    'TARGET_PROJECT_AUDITS/README.md','TARGET_PROJECT_AUDITS/TARGET_AUDIT_RUN_TEMPLATE.md',
+    'TARGET_PROJECT_AUDITS/TARGET_AUDIT_RUN_TEMPLATE.md',
     'REVIEW_PROTOCOLS/GOVERNANCE_AUDIT_PROTOCOL.md','REVIEW_PROTOCOLS/WORKFLOW_AUDIT_PROTOCOL.md','REVIEW_PROTOCOLS/VALIDATOR_AUDIT_PROTOCOL.md',
     'OUTPUT_TEMPLATES/REMEDIATION_PLAN_TEMPLATE.md','TARGET_HANDOFFS/TARGET_HANDOFF_TEMPLATE.md',
     '01_AGENT_DESIGN/README.md','05_SKILLS_CANDIDATES/README.md'
@@ -109,35 +99,116 @@ if ($logs.Count -lt 1) {
     Pass 'Session log reale presente.'
 }
 
-# Core discovery markers
-Require-Markers 'AGENTS.md' @('audit-only','0 agenti','1 agente','2 agenti','3+ agenti','Manager+Operativo','non default obbligatorio')
-Require-Markers '00_GOVERNANCE/PROJECT_CHARTER.md' @('topology discovery','proporzionalita','Non-Objectives')
-Require-Markers '00_GOVERNANCE/OPERATING_RULES.md' @('0/1/2/3+ agenti','scope, complessita, rischio, data-plane, frequenza modifiche, handoff/escalation','N/A')
-Require-Markers '00_GOVERNANCE/QUALITY_BAR.md' @('Topologie ammesse: 0 agenti, 1 agente, 2 agenti, 3+ agenti','Data-plane ammessi: single o multi','Proportionality assessment obbligatorio','source-of-truth chain','authority boundaries')
-Require-Markers '02_WORKFLOWS/SESSION_BOOTSTRAP.md' @('target_project','target_workdir','N/A','Topology discovery fields')
-Require-Markers 'TARGET_PROJECT_AUDITS/TARGET_AUDIT_RUN_TEMPLATE.md' @('Discovered topology class','0 agenti / 1 agente / 2 agenti / 3+ agenti','Data-plane type: single / multi','Source-of-Truth Chain','Authority Boundaries','Handoff / Escalation','Proportionality Assessment','Frequenza modifiche fit')
-Require-Markers 'REVIEW_PROTOCOLS/GOVERNANCE_AUDIT_PROTOCOL.md' @('0/1/2/3+ agenti','single/multi','Source-of-truth chain','Authority boundaries','Proportionality assessment')
-Require-Markers 'REVIEW_PROTOCOLS/WORKFLOW_AUDIT_PROTOCOL.md' @('Topology discovery esplicito','Handoff/escalation','authority boundaries','proportionality')
-Require-Markers 'REVIEW_PROTOCOLS/VALIDATOR_AUDIT_PROTOCOL.md' @('0/1/2/3+','single/multi data-plane','source-of-truth chain','authority boundaries','handoff/escalation','non obbligatorio')
-Require-Markers 'OUTPUT_TEMPLATES/REMEDIATION_PLAN_TEMPLATE.md' @('Discovered topology class','Data-plane type','Authority boundary changes','Handoff/escalation changes','frequenza modifiche')
-Require-Markers 'TARGET_HANDOFFS/TARGET_HANDOFF_TEMPLATE.md' @('Topology Context','Source-of-truth chain status','Authority Boundaries','Handoff / Escalation')
-Require-Markers '04_SESSION_LOGS/SESSION_LOG_TEMPLATE.md' @('target_project (required only if target audit esplicito; else N/A)','target_workdir (required only if target audit esplicito; else N/A)','Topology Discovery','Data-plane type: single / multi','Source-of-truth chain status','Authority boundaries status','Frequenza modifiche')
-
-# Fail on fixed-topology obligation
-$fixedForbidden = @(
-    'default obbligatorio: Manager\+Operativo',
-    'Manager\+Operativo obbligatorio',
-    'topologia fissa obbligatoria',
-    'topologia predefinita obbligatoria'
+# Enforced markers: target-fit + no-leakage + evidence taxonomy + gates
+Require-Markers 'AGENTS.md' @(
+    'topology-discovery-first e metodo interno IA Engineer',
+    'Non e una soluzione obbligatoria da imporre al target',
+    'Target-Fit Remediation (Binding)',
+    'No Framework Leakage (Binding)',
+    'Evidence Taxonomy (Binding)',
+    'External Research Trigger (Binding)',
+    'P0 consentito solo con rischio bloccante dimostrato'
 )
-Require-Regex 'AGENTS.md' @('Manager\+Operativo.*non default obbligatorio')
-Forbid-Markers 'AGENTS.md' $fixedForbidden
-Forbid-Markers '00_GOVERNANCE/PROJECT_CHARTER.md' @('topologia predefinita come obbligatoria')
-Forbid-Markers '00_GOVERNANCE/OPERATING_RULES.md' @('Manager\+Operativo obbligatorio','topologia fissa obbligatoria')
-Forbid-Markers '00_GOVERNANCE/QUALITY_BAR.md' @('Manager\+Operativo obbligatorio','topologia fissa obbligatoria')
 
-# Current session log markers
-Require-Markers '04_SESSION_LOGS/session-2026-05-05.md' @('Topology Discovery Realignment Update - 2026-05-05','target_project: N/A','target_workdir: N/A','proportionality_assessment','next_action') 'P1'
+Require-Markers '00_GOVERNANCE/OPERATING_RULES.md' @(
+    'Remediation target-fit obbligatoria',
+    'No framework leakage check obbligatorio',
+    'Structural-change evidence gate obbligatorio',
+    'P0 solo con rischio bloccante dimostrato',
+    'Evidence, Inference, Assumption, External research, Mitigated risk',
+    'External research trigger condizionale'
+)
+
+Require-Markers '00_GOVERNANCE/QUALITY_BAR.md' @(
+    'Target-Fit Remediation',
+    'No Framework Leakage',
+    'Evidence Taxonomy',
+    'P0 Gate',
+    'External Research Trigger'
+)
+
+Require-Markers 'TARGET_PROJECT_AUDITS/TARGET_AUDIT_RUN_TEMPLATE.md' @(
+    'No-framework-leakage check',
+    'Evidence Taxonomy',
+    'Structural-Change Evidence Gate',
+    'Target-fit rationale',
+    'Acceptance criteria verificabile',
+    'P0 blocking risk demonstrated',
+    'External Research Trigger'
+)
+
+Require-Markers 'OUTPUT_TEMPLATES/REMEDIATION_PLAN_TEMPLATE.md' @(
+    'Target-Fit Rationale',
+    'No-framework-leakage check',
+    'Evidence Taxonomy',
+    'Structural-Change Evidence Gate',
+    'Acceptance criteria verificabile',
+    'P0 used',
+    'blocking risk demonstrated',
+    'External Research Trigger'
+)
+
+Require-Markers 'TARGET_HANDOFFS/TARGET_HANDOFF_TEMPLATE.md' @(
+    'Target-Fit and Leakage Guardrail',
+    'No-framework-leakage check',
+    'Evidence Taxonomy',
+    'Structural-Change Evidence Gate',
+    'Acceptance criteria verificabile',
+    'P0 present',
+    'blocking risk demonstrated',
+    'External Research Trigger'
+)
+
+Require-Markers 'REVIEW_PROTOCOLS/GOVERNANCE_AUDIT_PROTOCOL.md' @(
+    'target-fit remediation',
+    'no-framework-leakage check',
+    'evidence taxonomy',
+    'structural-change evidence gate',
+    'P0 usato solo con blocking risk dimostrato',
+    'external-research trigger condizionale'
+)
+
+Require-Markers 'REVIEW_PROTOCOLS/WORKFLOW_AUDIT_PROTOCOL.md' @(
+    'no-framework-leakage check',
+    'evidence taxonomy',
+    'structural-change evidence gate',
+    'P0 solo con blocking risk dimostrato',
+    'external-research trigger condizionale',
+    'acceptance criteria verificabile'
+)
+
+Require-Markers 'REVIEW_PROTOCOLS/VALIDATOR_AUDIT_PROTOCOL.md' @(
+    'FAIL se manca target-fit remediation',
+    'FAIL se manca no framework leakage',
+    'FAIL se manca evidence taxonomy',
+    'FAIL se manca structural-change evidence gate',
+    'FAIL se manca regola P0 with blocking risk demonstrated',
+    'FAIL se manca external-research trigger condizionale',
+    'P0/P1 bloccanti, P2 warn salvo strict'
+)
+
+Require-Markers '04_SESSION_LOGS/SESSION_LOG_TEMPLATE.md' @(
+    'Target-fit rationale',
+    'No-framework-leakage check',
+    'Evidence Taxonomy',
+    'Structural-Change Evidence Gate',
+    'Acceptance criteria verificabile',
+    'P0 present',
+    'blocking risk demonstrated',
+    'External Research Trigger'
+)
+
+# forbid converting internal method into mandatory target solution
+Forbid-Markers 'AGENTS.md' @('topology-discovery-first = soluzione obbligatoria target','topologia obbligatoria target')
+
+# current session log must include update markers
+Require-Markers '04_SESSION_LOGS/session-2026-05-05.md' @(
+    'Enforced Governance Hardening Update - 2026-05-05',
+    'no_framework_leakage_check: pass',
+    'evidence_taxonomy: inserita come obbligo trasversale',
+    'severity_gate: P0 solo con blocking risk dimostrato',
+    'external_research_trigger: condizionale'
+)
 
 Write-Host "SUMMARY P0=$p0 P1=$p1 P2=$p2 Strict=$Strict"
 if ($hasBlocking) {

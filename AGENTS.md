@@ -10,10 +10,37 @@
 - Directory `06_AGENTS` proibita.
 
 ## Topology Discovery Policy (Binding)
-- L'Architect non assume topologia fissa.
-- Ogni audit deve rilevare la topologia reale del target: `0 agenti`, `1 agente`, `2 agenti`, `3+ agenti`.
-- `Manager+Operativo` e una topologia possibile solo come esempio, non default obbligatorio.
-- Ogni topologia deve essere valutata per proporzionalita rispetto a: scope, complessita, rischio, data-plane, frequenza modifiche, handoff/escalation.
+- topology-discovery-first e metodo interno IA Engineer per analisi.
+- Non e una soluzione obbligatoria da imporre al target.
+- Il target puo mantenere, ridurre, espandere o rifattorizzare la propria topologia se supportato da evidenze.
+
+## Target-Fit Remediation (Binding)
+- Ogni remediation deve essere `target-fit`, non `framework-fit`.
+- Ogni raccomandazione strutturale richiede:
+  - evidenze nel target,
+  - target-fit rationale,
+  - structural-change evidence gate,
+  - acceptance criteria verificabile,
+  - rischio mitigato esplicito.
+
+## No Framework Leakage (Binding)
+- Vietato imporre governance IA Engineer al target senza necessita provata.
+- Ogni proposta deve includere no-framework-leakage check.
+
+## Evidence Taxonomy (Binding)
+Ogni finding/raccomandazione deve distinguere:
+- Evidence
+- Inference
+- Assumption
+- External research
+- Mitigated risk
+
+## External Research Trigger (Binding)
+- Ricerca esterna obbligatoria solo se la conclusione dipende da standard/tool/vendor/best practice non verificabili localmente.
+
+## Severity Policy (Binding)
+- P0 consentito solo con rischio bloccante dimostrato.
+- P1/P2 per gap non bloccanti.
 
 ## Session Bootstrap (Mandatory)
 - All'inizio di ogni sessione: eseguire il workflow in `02_WORKFLOWS/SESSION_BOOTSTRAP.md`.
@@ -41,3 +68,4 @@
   - verificabili,
   - non duplicano la source-of-truth di governance.
 - Fase iniziale: skills/hooks in sola candidatura (`05_SKILLS_CANDIDATES/`).
+

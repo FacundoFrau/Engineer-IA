@@ -1,16 +1,17 @@
 # Governance Audit Protocol
 
 ## Objective
-Verificare allineamento governance del target a policy enterprise, auditabilita, determinismo e topology-discovery-first.
+Verificare allineamento governance del target a policy enterprise, auditabilita e determinismo senza framework leakage.
 
 ## Mandatory Checks
-1. Nessuna assunzione di topologia fissa obbligatoria.
-2. Supporto esplicito a topologie `0/1/2/3+ agenti`.
-3. Data-plane dichiarato (single/multi) con ownership e boundaries.
-4. Source-of-truth chain coerente e non duplicata.
-5. Authority boundaries e escalation policy tracciabili.
-6. Proportionality assessment presente e motivato.
+1. topology-discovery-first usato come metodo interno, non imposto come soluzione target.
+2. target-fit remediation presente.
+3. no-framework-leakage check presente.
+4. evidence taxonomy completa: Evidence, Inference, Assumption, External research, Mitigated risk.
+5. structural-change evidence gate presente quando si propone modifica strutturale.
+6. P0 usato solo con blocking risk dimostrato.
+7. external-research trigger condizionale presente.
 
 ## Output
 - Findings con severita P0/P1/P2.
-- Remediation plan con owner e acceptance criteria.
+- Remediation plan con acceptance criteria verificabile.

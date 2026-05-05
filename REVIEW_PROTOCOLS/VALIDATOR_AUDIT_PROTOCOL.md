@@ -1,14 +1,16 @@
 # Validator Audit Protocol
 
 ## Objective
-Verificare che il validator del target rilevi failure critici topologici e riduca falsi positivi.
+Verificare che il validator enforcement controlli marker/sezioni obbligatorie senza pretendere giudizio semantico completo.
 
 ## Mandatory Checks
-1. Severita P0/P1 bloccanti, P2 warn (o strict bloccante).
-2. Copertura marker topology discovery (`0/1/2/3+`, single/multi data-plane).
-3. Copertura marker source-of-truth chain, authority boundaries, handoff/escalation, proportionality.
-4. Nessun fail su esempi legittimi (es. Manager+Operativo citato come esempio non obbligatorio).
-5. Report finale con summary severita e risultato PASS/FAIL.
+1. FAIL se manca target-fit remediation.
+2. FAIL se manca no framework leakage.
+3. FAIL se manca evidence taxonomy.
+4. FAIL se manca structural-change evidence gate.
+5. FAIL se manca regola P0 with blocking risk demonstrated.
+6. FAIL se manca external-research trigger condizionale.
+7. P0/P1 bloccanti, P2 warn salvo strict.
 
 ## Output
 - Esito validazione.
