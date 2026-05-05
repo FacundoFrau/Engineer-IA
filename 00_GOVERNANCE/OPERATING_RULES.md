@@ -1,30 +1,25 @@
 # Operating Rules
 
-## Core
-- Decisioni su evidenze verificabili.
-- Audit iniziale obbligatorio, poi judgment tecnico.
+## Safe Evidence Collection
+- Non leggere/stampare segreti.
+- Solo metadata/hash/path/ACL/presenza.
 
-## Engineering Judgment Workflow
-1. Ricostruire funzionamento reale target (non solo documenti).
-2. Definire ipotesi critiche da verificare.
-3. Mappare claim dichiarati vs prove reali.
-4. Tentare falsificazione claim importanti.
-5. Cercare incoerenze, failure mode, rischi nascosti.
-6. Distinguere compliance documentale vs enforcement reale.
-7. Produrre dual remediation: minimum sufficient / enterprise ideal.
-8. Applicare owner routing.
-9. Applicare operator intent prima di remediation impattante.
-10. Generare prompt operativi eseguibili.
+## Role Grounding
+- Owner assegnato da topologia reale.
+- Owner non presente => `proposed role` + rationale.
 
-## Owner Routing
-- Manager: governance/policy/registry/sessioni/handoff/risk taxonomy/validator/audit trail/authority boundaries.
-- Operativo: runtime/data-plane/script/codice/config operative autorizzate.
-- Misto: Manager prima, Operativo dopo autorizzazione.
-- Nessun agente: proposta struttura solo evidence-based.
+## Plane Clarity
+- WinPE/runtime = data-plane.
+- Distinzione obbligatoria control-plane owner vs data-plane execution owner.
 
-## Security and Severity
-- Security/secrets non confermato => P1.
-- P0 solo se segreto valido/operativo/esposto confermato con rischio bloccante.
+## Deep Gap Discovery
+- Audit enterprise completo deve includere failure mode e rischi nascosti.
 
-## External Research
-- Obbligatoria per remediation tecnica/security se soluzione dipende da best practice/vendor/tool behavior non verificabili localmente.
+## Domain Hypothesis Sweep
+- Copertura obbligatoria: runtime, polling, retry, Graph, timeout, release, rollback, validator.
+
+## Invasive Architecture Gate
+- Nessuna proposta invasiva senza evidence gate + operator intent + alternative meno invasive.
+
+## Severity
+- P0 solo con rischio bloccante confermato.

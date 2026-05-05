@@ -146,3 +146,14 @@
 - Impact: protocolli/template orientati a ricostruzione reale, falsificazione claim e dual remediation
 - Risks: incremento effort per audit
 - Follow-up: misurare qualita audit su casi reali
+
+- Date: 2026-05-05
+- Owner: AI Engineer / Principal Agent Architect
+- Decision ID: DEC-2026-05-05-14
+- Context: audit Autopilot non accettabile per owner invention, secret-read suggestion e shallow gap discovery
+- Options Considered: mantenere modello attuale / introdurre grounded enterprise recovery protocol
+- Decision: introdurre Safe Evidence Collection, Role Grounding, Data-plane Clarity, Domain Hypothesis Sweep, Invasive Architecture Gate
+- Rationale: riallineare comportamento a standard enterprise reale
+- Impact: riduce rischio di remediation errate e analisi superficiali
+- Risks: maggior effort per audit
+- Follow-up: verificare prossimi audit reali con nuovi gate

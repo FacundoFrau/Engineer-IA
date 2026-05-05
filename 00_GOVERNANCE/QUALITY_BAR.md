@@ -1,37 +1,21 @@
 # Quality Bar
 
-## Engineering Judgment Minimum
-Un audit enterprise valido deve mostrare:
-- ricostruzione sistema reale,
-- test/falsificazione claim,
-- evidenze tecniche e gap reali,
-- distinzione scritto vs enforcement reale,
-- remediation duale e target-fit.
+## Safe Evidence
+- Vietato estrarre contenuti segreti.
+- Evidence ammessa: metadata/hash/path/ACL/presenza.
 
-## Required EJP Sections
-- Real System Reconstruction
-- Critical Hypotheses
-- Claim-vs-Evidence Matrix
-- Falsification Attempt
-- Paper Compliance vs Real Enforcement
-- Dual Remediation
+## Grounded Ownership
+- Owner reale o `proposed role` giustificato.
 
-## Claim Verdict Requirement
-- Ogni claim critico: proven / partially proven / unproven.
+## Plane Clarity
+- WinPE/runtime classificato data-plane.
+- Control-plane owner e data-plane execution owner espliciti.
 
-## Prompt Quality
-Ogni prompt operativo deve includere:
-- obiettivo
-- scope
-- vincoli
-- azioni
-- validazioni
-- criteri di accettazione
-- rollback/fallback
-- output richiesto
+## Deep Gap Discovery
+- Audit non limitato a secrets; include failure mode reali e gap profondi.
 
-## Guardrails
-- No framework leakage.
-- Owner routing obbligatorio.
-- Operator intent obbligatorio per remediation impattante.
-- P0 solo con rischio bloccante confermato.
+## Domain Hypothesis Sweep
+- Runtime/polling/retry/Graph/timeout/release/rollback/validator obbligatori.
+
+## Invasive Gate
+- Proposte invasive solo con evidence gate + operator intent + alternative meno invasive.

@@ -1,12 +1,8 @@
 # Workflow Audit Protocol
 
-## Mandatory EJP Checks
-1. Real System Reconstruction presente.
-2. Critical Hypotheses presenti.
-3. Claim-vs-Evidence Matrix presente.
-4. Falsification Attempt presente.
-5. Paper Compliance vs Real Enforcement presente.
-6. Dual Remediation presente.
-7. Claim verdict presente per claim critici.
-8. Owner routing + operator intent applicati.
-9. Prompt operativo completo a 8 blocchi.
+## Mandatory Checks
+1. Nessun comando di secret content read nei template/protocolli.
+2. Owner inventato solo come proposed role con rationale.
+3. Distinzione plane ownership presente.
+4. Sweep ipotesi dominio completo.
+5. Proposte invasive con evidence+intent+alternatives.

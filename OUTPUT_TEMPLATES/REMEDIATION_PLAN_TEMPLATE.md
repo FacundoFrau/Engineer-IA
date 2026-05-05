@@ -1,28 +1,27 @@
 # Remediation Plan Template
 
-## Claim-vs-Evidence Matrix
-- Claim:
-  - Evidence:
-  - Verdict: proven / partially proven / unproven
+## Role Grounding
+- detected_owner:
+- proposed_role (if needed):
+- role_rationale:
 
-## Dual Remediation
-- Minimum sufficient:
-- Enterprise ideal:
+## Plane Clarity
+- control_plane_owner:
+- data_plane_execution_owner:
+- winpe_runtime_classification: data-plane
 
-## Owner Routing
-- owner: Manager / Operativo / Misto / Nessun agente
-- ownership rationale:
+## Domain Hypothesis Sweep Coverage
+- runtime:
+- polling:
+- retry:
+- graph:
+- timeout:
+- release:
+- rollback:
+- validator:
 
-## Operator Intent Gate
-- operator_intent_required: yes/no
-- operator_intent_question:
-
-## Operational Prompt (Enterprise Complete)
-- obiettivo:
-- scope:
-- vincoli:
-- azioni:
-- validazioni:
-- criteri_di_accettazione:
-- rollback_fallback:
-- output_richiesto:
+## Invasive Architecture Gate
+- invasive_proposal_present: yes/no
+- evidence_gate:
+- operator_intent:
+- less_invasive_alternatives:

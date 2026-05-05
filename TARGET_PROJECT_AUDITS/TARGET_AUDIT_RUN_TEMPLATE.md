@@ -1,47 +1,35 @@
 # Target Audit Run Template
 
-## Real System Reconstruction
-- Runtime entrypoints:
-- Data flow reale:
-- Dipendenze operative reali:
+## Safe Evidence Collection
+- allowed_evidence: metadata/hash/path/ACL/presenza
+- forbidden_secret_read_commands: Get-Content secrets*/*.pfx/*.key/token*
 
-## Critical Hypotheses
-- H1:
-- H2:
+## Role Grounding
+- detected_owner:
+- proposed_role (if needed):
+- role_rationale:
 
-## Claim-vs-Evidence Matrix
-- Claim:
-  - Evidence:
-  - Verdict: proven / partially proven / unproven
+## Plane Clarity
+- control_plane_owner:
+- data_plane_execution_owner:
+- winpe_runtime_classification: data-plane
 
-## Falsification Attempt
-- Claim testato:
-- Tentativo di falsificazione:
-- Esito:
+## Deep Gap Discovery
+- hidden_failure_modes_found:
+- deep_gaps_found:
 
-## Paper Compliance vs Real Enforcement
-- Policy dichiarata:
-- Enforcement reale osservato:
-- Gap:
+## Domain Hypothesis Sweep
+- runtime hypothesis:
+- polling hypothesis:
+- retry hypothesis:
+- graph hypothesis:
+- timeout hypothesis:
+- release hypothesis:
+- rollback hypothesis:
+- validator hypothesis:
 
-## Dual Remediation
-- Minimum sufficient remediation:
-- Enterprise ideal remediation:
-
-## Owner Routing
-- owner: Manager / Operativo / Misto / Nessun agente
-- ownership rationale:
-
-## Operator Intent Gate
-- operator_intent_required: yes/no
-- operator_intent_question:
-
-## Operational Prompt (Enterprise Complete)
-- obiettivo:
-- scope:
-- vincoli:
-- azioni:
-- validazioni:
-- criteri_di_accettazione:
-- rollback_fallback:
-- output_richiesto:
+## Invasive Architecture Gate
+- invasive_proposal_present: yes/no
+- evidence_gate:
+- operator_intent:
+- less_invasive_alternatives:
