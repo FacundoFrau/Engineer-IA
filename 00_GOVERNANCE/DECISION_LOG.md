@@ -135,3 +135,14 @@
 - Impact: governance/template/protocolli/validator estesi con controlli minimi obbligatori
 - Risks: maggiore onere di compilazione
 - Follow-up: validare su prossimo audit target reale la sostenibilita operativa del modello
+
+- Date: 2026-05-05
+- Owner: AI Engineer / Principal Agent Architect
+- Decision ID: DEC-2026-05-05-13
+- Context: audit eccessivamente checklist-driven
+- Options Considered: mantenere compliance-only / adottare Engineering Judgment Protocol
+- Decision: adottare Engineering Judgment Protocol (EJP) con enforcement minimo validator
+- Rationale: aumentare giudizio tecnico critico e ridurre falsi enterprise
+- Impact: protocolli/template orientati a ricostruzione reale, falsificazione claim e dual remediation
+- Risks: incremento effort per audit
+- Follow-up: misurare qualita audit su casi reali

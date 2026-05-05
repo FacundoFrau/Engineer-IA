@@ -1,26 +1,37 @@
 # Quality Bar
 
-## Language Gate
-- Output verso operatore in italiano con eccezioni tecniche ammesse.
+## Engineering Judgment Minimum
+Un audit enterprise valido deve mostrare:
+- ricostruzione sistema reale,
+- test/falsificazione claim,
+- evidenze tecniche e gap reali,
+- distinzione scritto vs enforcement reale,
+- remediation duale e target-fit.
 
-## Enterprise Complete Audit Gate
-- Audit completo solo con copertura delle 14 sezioni minime.
-- Sezioni non coperte marcate `non auditato` + motivo.
+## Required EJP Sections
+- Real System Reconstruction
+- Critical Hypotheses
+- Claim-vs-Evidence Matrix
+- Falsification Attempt
+- Paper Compliance vs Real Enforcement
+- Dual Remediation
 
-## Security Severity Gate
-- Finding security/secrets non confermato => P1.
-- P0 solo con rischio bloccante confermato e segreto valido/operativo/esposto.
+## Claim Verdict Requirement
+- Ogni claim critico: proven / partially proven / unproven.
 
-## Operator Intent and Continuity
-- Operator intent obbligatorio prima di remediation impattante.
-- Preserve operability, safe alternatives e rollback/fallback obbligatori.
+## Prompt Quality
+Ogni prompt operativo deve includere:
+- obiettivo
+- scope
+- vincoli
+- azioni
+- validazioni
+- criteri di accettazione
+- rollback/fallback
+- output richiesto
 
-## External Research Gate
-- Obbligatoria per remediation tecnica/security dipendente da standard/vendor/tool behavior non verificabile localmente.
-
-## Operational Prompt Completeness
-- Prompt operativo completo con 8 blocchi obbligatori.
-
-## Authorization Guardrail
-- Vietata modifica target senza autorizzazione esplicita.
-- Vietata creazione agenti target nel repository IA Engineer.
+## Guardrails
+- No framework leakage.
+- Owner routing obbligatorio.
+- Operator intent obbligatorio per remediation impattante.
+- P0 solo con rischio bloccante confermato.

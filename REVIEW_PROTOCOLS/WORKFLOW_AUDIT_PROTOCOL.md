@@ -1,9 +1,12 @@
 # Workflow Audit Protocol
 
-## Mandatory Checks
-1. Claim audit completo coerente con coverage matrix.
-2. Sezioni non coperte marcate non auditato + motivo.
-3. Security findings classificati con regola P1/P0.
-4. Operator intent gate applicato prima di remediation impattante.
-5. Prompt operativo include 8 blocchi obbligatori.
-6. External research applicata quando dipendenza non locale.
+## Mandatory EJP Checks
+1. Real System Reconstruction presente.
+2. Critical Hypotheses presenti.
+3. Claim-vs-Evidence Matrix presente.
+4. Falsification Attempt presente.
+5. Paper Compliance vs Real Enforcement presente.
+6. Dual Remediation presente.
+7. Claim verdict presente per claim critici.
+8. Owner routing + operator intent applicati.
+9. Prompt operativo completo a 8 blocchi.

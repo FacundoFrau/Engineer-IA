@@ -1,28 +1,30 @@
 # Operating Rules
 
-## Core Rules
-- Decisioni basate su evidenze testabili.
-- Nessuna modifica non tracciata alle policy di governance.
-- Ogni workflow deve avere acceptance criteria espliciti.
-- Questo repository opera come Target Agent Architecture Hub.
+## Core
+- Decisioni su evidenze verificabili.
+- Audit iniziale obbligatorio, poi judgment tecnico.
 
-## Language Rules
-- Output operatore in italiano.
-- Inglese solo per path/comandi/codice/enum/marker tecnici/nomi file/citazioni letterali.
+## Engineering Judgment Workflow
+1. Ricostruire funzionamento reale target (non solo documenti).
+2. Definire ipotesi critiche da verificare.
+3. Mappare claim dichiarati vs prove reali.
+4. Tentare falsificazione claim importanti.
+5. Cercare incoerenze, failure mode, rischi nascosti.
+6. Distinguere compliance documentale vs enforcement reale.
+7. Produrre dual remediation: minimum sufficient / enterprise ideal.
+8. Applicare owner routing.
+9. Applicare operator intent prima di remediation impattante.
+10. Generare prompt operativi eseguibili.
 
-## Audit Completeness Rules
-- Audit completo ammesso solo con copertura delle 14 sezioni enterprise minime.
-- Se sezione non coperta: dichiarare `non auditato` + motivo.
+## Owner Routing
+- Manager: governance/policy/registry/sessioni/handoff/risk taxonomy/validator/audit trail/authority boundaries.
+- Operativo: runtime/data-plane/script/codice/config operative autorizzate.
+- Misto: Manager prima, Operativo dopo autorizzazione.
+- Nessun agente: proposta struttura solo evidence-based.
 
-## Security and Research Rules
+## Security and Severity
 - Security/secrets non confermato => P1.
-- P0 solo se rischio bloccante e segreto confermato valido/operativo/esposto.
-- Operator intent obbligatorio prima di remediation impattante.
-- External research obbligatoria per remediation tecnica/security quando soluzione dipende da standard/vendor/tool behavior non verificabili localmente.
+- P0 solo se segreto valido/operativo/esposto confermato con rischio bloccante.
 
-## Prompt Rules
-- Ogni prompt operativo deve includere: obiettivo, scope, vincoli, azioni, validazioni, criteri di accettazione, rollback/fallback, output richiesto.
-
-## Target Guardrails
-- Nessuna modifica al target senza autorizzazione esplicita.
-- Nessuna creazione agenti target interni; `06_AGENTS` vietata.
+## External Research
+- Obbligatoria per remediation tecnica/security se soluzione dipende da best practice/vendor/tool behavior non verificabili localmente.

@@ -1,26 +1,21 @@
 # Remediation Plan Template
 
-## Language Gate
-- output_language: italiano
+## Claim-vs-Evidence Matrix
+- Claim:
+  - Evidence:
+  - Verdict: proven / partially proven / unproven
 
-## Security Severity
-- confirmed_secret_exposed_valid_operational: yes/no
-- severity_rule: P1 if unconfirmed / P0 if confirmed
+## Dual Remediation
+- Minimum sufficient:
+- Enterprise ideal:
 
-## Operator Intent & Continuity
+## Owner Routing
+- owner: Manager / Operativo / Misto / Nessun agente
+- ownership rationale:
+
+## Operator Intent Gate
 - operator_intent_required: yes/no
 - operator_intent_question:
-- risk_if_unchanged:
-- risk_if_removed:
-- preserve_operability: yes/no
-- safe_alternatives:
-- recommended_remediation:
-- fallback_rollback:
-
-## External Research
-- external_research_required: yes/no
-- reason_non_local_dependency:
-- sources_and_date:
 
 ## Operational Prompt (Enterprise Complete)
 - obiettivo:
